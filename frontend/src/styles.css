@@ -1,9 +1,13 @@
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
 * {
   box-sizing: border-box;
+  margin: 0;
 }
 html,
 body {
-  background: #ecf0f3;
+  background: linear-gradient(135deg, #bbc8f0, hwb(214 58% 5%));
+  scroll-behavior: smooth;
 }
 h1 {
   margin: 0;
