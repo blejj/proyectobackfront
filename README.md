@@ -6,7 +6,6 @@ Proyecto académico desarrollado para las materias Frontend y Backend. Objetivo:
 ## Tecnologías utilizadas
 * Typescript
 * Angular
-* Tailwind CSS
 * SQL
 * 
 
