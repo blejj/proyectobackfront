@@ -1,8 +1,57 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
+
+interface CartItem {
+  id: number;
+  title: string;
+  price: number;
+  quantity: number;
+  cover: string;
+}
 
 @Injectable({ providedIn: 'root' })
 export class CartService {
 
+    private cartItemsSubject = new BehaviorSubject<CartItem[]>([]);
+    cartItems$: Observable<CartItem[]> = this.cartItemsSubject.asObservable();
 
+      getTotalItems(): number {
+    const items = this.cartItemsSubject.getValue();
+    return items.reduce((total, item) => total + item.quantity, 0);
+  }
+
+  getTotalPrice(): number {
+    const items = this.cartItemsSubject.getValue();
+    return items.reduce((total, item) => total + (item.price * item.quantity), 0);
+  }
+
+  updateQuantity(id: number, newQuantity: number): void {
+    const items = this.cartItemsSubject.getValue();
+    const index = items.findIndex(item => item.id === id);
+    
+    if (index !== -1) {
+      if (newQuantity <= 0) {
+        this.removeFromCart(id);
+      } else {
+        items[index].quantity = newQuantity;
+        this.cartItemsSubject.next([...items]);
+      }
+    }
+  }
+
+  removeFromCart(id: number): void {
+    const items = this.cartItemsSubject.getValue();
+    this.cartItemsSubject.next(items.filter(item => item.id !== id));
+  }
+
+  addToCart(item: Omit<CartItem, 'quantity'>): void {
+    const items = this.cartItemsSubject.getValue();
+    const existingItem = items.find(i => i.id === item.id);
+    
+    if (existingItem) {
+      this.updateQuantity(item.id, existingItem.quantity + 1);
+    } else {
+      this.cartItemsSubject.next([...items, { ...item, quantity: 1 }]);
+    }
+  }
 }
