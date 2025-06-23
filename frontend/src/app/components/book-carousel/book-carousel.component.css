@@ -23,7 +23,7 @@
 .book-card {
   min-width: 250px;
   max-width: 250px;
-  height: 320px;
+  min-height: 350px;
   background: white;
   border-radius: 8px;
   padding: 1rem;
@@ -37,7 +37,7 @@
 
 .book-card img {
   width: 100%;
-  height: 180px;
+  height: 300px;
   object-fit: cover;
   border-radius: 4px;
 }
@@ -47,7 +47,7 @@
   color: #e86e2c;
 }
 
-button {
+.prev, .next {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -65,11 +65,11 @@ button {
   justify-content: center;
 }
 
-button:hover {
+.prev:hover, .next:hover {
   background: rgba(0, 0, 0, 0.8);
 }
 
-button:disabled {
+.prev:disabled, .next:disabled {
   opacity: 0.3;
   cursor: not-allowed;
 }
@@ -82,6 +82,22 @@ button:disabled {
   right: -20px;
 }
 
+.buy-btn {
+  width: 100%;
+  padding: 8px 0;
+  margin-top: 10px;
+  background-color: #e86e2c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.buy-btn:hover {
+  background-color: #d45a1a;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .carousel-container {
@@ -92,7 +108,7 @@ button:disabled {
     min-width: 200px;
   }
   
-  button {
+  .prev, .next {
     width: 30px;
     height: 30px;
   }

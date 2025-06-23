@@ -3,10 +3,11 @@
   <div class="carousel-container">
     <div class="carousel-slide">
       <div class="book-card" *ngFor="let book of visibleBooks">
-        <img [src]="book.cover" [alt]="book.title">
+        <img [src]="book.cover" [alt]="book.title" (error)="book.cover = 'logo.png'">
         <h3>{{ book.title }}</h3>
-        <p>{{ book.description }}</p>
+        <p>{{ book.author }}</p>
         <span class="price">{{ book.price | currency }}</span>
+        <button class="buy-btn" (click)="addToCart(book)">Comprar</button>
       </div>
     </div>
     <button class="prev" (click)="prevSlide()" [disabled]="currentIndex === 0">❮</button>
