@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BookCarouselComponent } from '../book-carousel/book-carousel.component';
+import { BookCarouselComponent } from '../../../components/book-carousel/book-carousel.component';
 
 @Component({
   selector: 'app-news',

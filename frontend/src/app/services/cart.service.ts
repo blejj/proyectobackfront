@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { NotificationService } from './notification.service';
 
 interface CartItem {
   id: number;
@@ -11,6 +12,8 @@ interface CartItem {
 
 @Injectable({ providedIn: 'root' })
 export class CartService {
+
+    constructor(private notificationService: NotificationService){}
 
     private cartItemsSubject = new BehaviorSubject<CartItem[]>([]);
     cartItems$: Observable<CartItem[]> = this.cartItemsSubject.asObservable();
@@ -45,6 +48,13 @@ export class CartService {
   }
 
   addToCart(item: Omit<CartItem, 'quantity'>): void {
+
+    if (!item.id) {
+    console.error('El item no tiene ID:', item);
+    alert('Error al cargar libro al carrito');
+    return;
+    }
+    
     const items = this.cartItemsSubject.getValue();
     const existingItem = items.find(i => i.id === item.id);
     
@@ -53,5 +63,7 @@ export class CartService {
     } else {
       this.cartItemsSubject.next([...items, { ...item, quantity: 1 }]);
     }
+
+    this.notificationService.showSuccess(`${item.title} agregado al carrito`);
   }
 }
