@@ -29,30 +29,13 @@ h2 {
   border-bottom: 1px solid #f0f0f0;
 }
 
-/* Ajustes para el header cuando no hay avatar */
 .perfil-header.no-avatar {
-  justify-content: center; /* Centra el nombre si no hay avatar */
+  justify-content: center; 
 }
-
-/* Se eliminan todos los estilos relacionados con .perfil-avatar y .perfil-avatar-placeholder, y .avatar-text */
-/*
-.perfil-avatar-placeholder {
-  width: 120px;
-  text-align: left;
-  margin-right: 1.5rem;
-  flex-shrink: 0;
-}
-
-.avatar-text {
-  font-size: 1rem;
-  color: #6c757d;
-  white-space: nowrap;
-}
-*/
 
 .perfil-nombre-completo {
   flex-grow: 1;
-  text-align: center; /* Centra el texto del nombre porque ya no hay elemento a la izquierda */
+  text-align: center; 
 }
 
 .perfil-nombre-completo h3 {
