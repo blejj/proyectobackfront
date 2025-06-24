@@ -5,12 +5,19 @@ const getBooks = async (req, res) => {
     const searchTerm = req.query.q || 'harry potter'; // Default si no se pasa ?q=
     const response = await axios.get(`https://openlibrary.org/search.json?q=${searchTerm}`);
 
-    const books = response.data.docs.slice(0, 10).map(doc => ({
-      title: doc.title,
-      author: doc.author_name ? doc.author_name.join(', ') : 'Desconocido',
-      year: doc.first_publish_year || 'N/A',
-      price: Math.floor(Math.random() * 50000) + 10000 // Precio simulado
-    }));
+    const books = response.data.docs.slice(0, 10).map(doc => {
+      const coverId = doc.cover_i;
+
+      return {
+        title: doc.title,
+        author: doc.author_name ? doc.author_name.join(', ') : 'Desconocido',
+        year: doc.first_publish_year || 'N/A',
+        price: Math.floor(Math.random() * 50000) + 10000,
+        cover: coverId
+          ? `https://covers.openlibrary.org/b/id/${coverId}-M.jpg`
+          : 'https://via.placeholder.com/128x195?text=Sin+imagen'
+      };
+    });
 
     res.json(books);
   } catch (error) {
