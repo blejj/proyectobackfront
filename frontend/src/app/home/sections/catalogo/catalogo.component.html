@@ -6,11 +6,7 @@
     <div class="col-md-3 mb-3">
       <h5>Buscar libros</h5>
       <div class="mb-3">
-        <input
-          class="form-control"
-          [(ngModel)]="searchQuery"
-          placeholder="Harry Potter, Dune..."
-        />
+        <input class="form-control" [(ngModel)]="searchQuery" placeholder="Harry Potter, Dune..." />
         <button class="btn btn-primary mt-2 w-100" (click)="buscarLibros()">Buscar</button>
       </div>
 
@@ -34,6 +30,12 @@
       <div class="row row-cols-1 row-cols-md-3 g-4">
         <div class="col" *ngFor="let book of filteredBooks">
           <div class="card h-100">
+            <img [src]="book.cover" alt="Portada del libro" class="card-img-top"
+              style="height: 300px; object-fit: cover" />
+            <ng-template #noCover>
+              <img src="assets/placeholder.jpg" class="card-img-top" alt="Sin portada" />
+            </ng-template>
+
             <div class="card-body">
               <h5 class="card-title">{{ book.title }}</h5>
               <p class="card-text">Autor: {{ book.author }}</p>
@@ -51,3 +53,5 @@
     </div>
   </div>
 </div>
+
+<app-footer></app-footer>

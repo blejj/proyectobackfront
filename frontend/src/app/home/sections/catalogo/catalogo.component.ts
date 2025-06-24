@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { BookService } from '../../../services/book.service';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   standalone: true,
   selector: 'app-catalogo',
-  imports: [CommonModule, FormsModule, NavbarComponent],
+  imports: [CommonModule, FormsModule, NavbarComponent, FooterComponent],
   templateUrl: './catalogo.component.html',
   styleUrls: ['./catalogo.component.css']
 })
