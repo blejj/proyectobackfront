@@ -19,8 +19,8 @@ export class CheckoutComponent {
     nroTarjeta: '',
     fechaVencimiento: '',
     clave: '',
-    idUsuario: 1,  // Hardcodeado para test
-    importe: 1000 
+    idUsuario: 0,
+    importe: 0 
   };
   
   constructor(
@@ -36,6 +36,11 @@ export class CheckoutComponent {
       alert('Por favor complete todos los campos');
       return;
     }
+
+    const userIdStr = localStorage.getItem('userId');
+    const userId = Number(userIdStr);
+
+    this.paymentData.idUsuario = userId;
 
     this.checkoutService.processPayment(this.paymentData).subscribe({
       next: (response) => {

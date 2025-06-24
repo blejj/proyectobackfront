@@ -38,7 +38,7 @@ const loginUser = async ({ email, password }) => {
     { expiresIn: '1h' }
   );
 
-  return { status: 200, body: { message: 'Login exitoso', token } };
+  return { status: 200, body: { message: 'Login exitoso', token, idUsuario: user.idUsuario } };
 };
 
 module.exports = { registerUser, loginUser };

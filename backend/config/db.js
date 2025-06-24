@@ -2,9 +2,9 @@ const sql = require('mssql');
 
 const config = {
   user: 'sa',
-  password: 'Sa112358',
-  server: 'localhost',      
-  port: 5964,              
+  password: '1903',
+  server: '127.0.0.1',
+  port: 5964,
   database: 'Libreria',
   options: {
     encrypt: false,
