@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ViewportScroller } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../../../services/cart.service';
+import { Router } from '@angular/router'; //
 
 @Component({
   selector: 'app-navbar',
@@ -15,7 +16,8 @@ export class NavbarComponent {
 
   constructor(
     private viewportScroller: ViewportScroller,
-    public cartService: CartService
+    public cartService: CartService,
+    private router: Router
   ) {}
 
   toggleCart(): void {
@@ -27,10 +29,7 @@ export class NavbarComponent {
   }
 
   checkout(): void {
-    // TODO lógica para finalizar la compra
-    console.log('Compra finalizada', this.cartService.getTotalPrice());
-    //TODO
-    // Ejemplo: redirigir a página de checkout o limpiar carrito
-    // this.cartService.clearCart();
+    this.router.navigate(['/checkout']);
+    this.showCart = false;
   }
 }
