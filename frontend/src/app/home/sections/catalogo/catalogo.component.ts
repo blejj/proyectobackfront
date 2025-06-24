@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { BookService } from '../../../services/book.service';
+import { CartService } from '../../../services/cart.service';
 import { FooterComponent } from '../footer/footer.component';
 
 @Component({
@@ -13,7 +14,13 @@ import { FooterComponent } from '../footer/footer.component';
   styleUrls: ['./catalogo.component.css']
 })
 export class CatalogoComponent implements OnInit {
+
+  constructor(
+      private cartService: CartService,
+  ){}
+
   private bookService = inject(BookService);
+
 
   books: any[] = [];
   searchQuery: string = ''; // Búsqueda inicial por defecto
@@ -45,5 +52,14 @@ export class CatalogoComponent implements OnInit {
       book.price <= this.filters.maxPrice &&
       book.author.toLowerCase().includes(this.filters.author.toLowerCase())
     );
+  }
+
+  addToCart(book:any){
+    this.cartService.addToCart({
+      id:book.id,
+      title:book.title,
+      price: book.price,
+      cover: book.cover
+    });
   }
 }

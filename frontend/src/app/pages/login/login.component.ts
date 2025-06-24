@@ -8,10 +8,11 @@ import { Router } from '@angular/router';
   selector: 'app-login',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './login.component.html'
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  user = { email: '', password: '', id: '' };
+  user = { email: '', password: '', id: '' }; //este
 
   constructor(private authService: AuthService, private router: Router) {}
 

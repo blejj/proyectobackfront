@@ -1,8 +1,8 @@
 const sql = require('mssql');
 
 const config = {
-  user: 'sa',
-  password: '1903',
+  user: 'FranB',
+  password: 'Test1234',
   server: '127.0.0.1',
   port: 5964,
   database: 'Libreria',
@@ -15,7 +15,7 @@ const config = {
 const poolPromise = new sql.ConnectionPool(config)
   .connect()
   .then(pool => {
-    console.log('✅ Conectado a SQL Server');
+    console.log('Conectado a SQL Server');
     return pool;
   })
   .catch(err => {

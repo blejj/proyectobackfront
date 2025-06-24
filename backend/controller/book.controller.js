@@ -2,7 +2,7 @@ const axios = require('axios');
 
 const getBooks = async (req, res) => {
   try {
-    const searchTerm = req.query.q || 'harry potter'; // Default si no se pasa ?q=
+    const searchTerm = req.query.q || 'harry potter'; // Default si no se pasa
     const response = await axios.get(`https://openlibrary.org/search.json?q=${searchTerm}`);
 
     const books = response.data.docs.slice(0, 10).map(doc => {

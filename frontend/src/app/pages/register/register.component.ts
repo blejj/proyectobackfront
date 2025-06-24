@@ -7,7 +7,8 @@ import { AuthService } from '../../services/auth.service';
   selector: 'app-register',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './register.component.html'
+  templateUrl: './register.component.html',
+  styleUrl: './register.component.css'
 })
 export class RegisterComponent {
   user = {
@@ -18,7 +19,7 @@ export class RegisterComponent {
     telefono: '',
     direccion: '',
     dni: ''
-  };
+  }; //este también.
 
   constructor(private authService: AuthService) {}
 
