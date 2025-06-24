@@ -1,8 +1,9 @@
 const express = require('express');
 const cors = require('cors');
-require('./routers/db'); // Solo para inicializar la conexión
+require('./config/db'); // Solo para inicializar la conexión
+const bookRoutes = require('./routes/book.routes');
 
-const authRoutes = require('./routers/auth.routes');
+const authRoutes = require('./routes/auth.routes');
 
 const app = express();
 const HOSTNAME = '127.0.0.1';
@@ -14,6 +15,8 @@ app.use(express.json());
 
 // Rutas
 app.use('/api/auth', authRoutes);
+
+app.use('/api/books', bookRoutes);
 
 // Ruta de prueba
 app.get('/', (req, res) => {
@@ -29,3 +32,5 @@ app.get('/login', (req, res) => {
 app.listen(PORT, HOSTNAME, () => {
   console.log(`Servidor escuchando en http://${HOSTNAME}:${PORT}`);
 });
+
+module.exports = app;

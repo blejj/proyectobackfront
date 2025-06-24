@@ -19,4 +19,9 @@ export class BookService {
     return this.http.get<any[]>(`${this.apiUrl}/{id}`);;
   }
 
+  searchBooks(query: string) {
+  return this.http.get<any[]>(`${this.apiUrl}?q=${query}`);
+  }
+
+
 }
