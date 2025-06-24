@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html'
 })
 export class LoginComponent {
-  user = { email: '', password: '' };
+  user = { email: '', password: '', id: '' };
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -19,6 +19,7 @@ export class LoginComponent {
     this.authService.login(this.user).subscribe({
       next: res => {
         localStorage.setItem('email', this.user.email);
+        localStorage.setItem('userId', res.idUsuario.toString());
         this.router.navigate(['/home']);
         console.log('Login exitoso:', res);
       },
