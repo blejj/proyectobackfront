@@ -30,13 +30,14 @@
   font-family: 'Georgia', serif;
   font-size: 1.2rem;
   font-weight: bold;
-  color: #5D3FD3;
+  color: rgb(17, 47, 180);
   cursor: pointer;
   transition: color 0.3s ease, transform 0.3s ease;
+  text-shadow: 2px 2px 6px rgba(53, 52, 52, 0.6);
 }
 
 .site-name:hover {
-  color: #4778ff;
+  color: rgb(4, 3, 109);
   transform: scale(1.05);
 }
 

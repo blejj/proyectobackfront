@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  user = { email: '', password: '', id: '' }; //este
+  user: User = { email: '', password: '', id: '' };
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -24,7 +25,7 @@ export class LoginComponent {
         this.router.navigate(['/home']);
         console.log('Login exitoso:', res);
       },
-      error: err => alert('Error al iniciar sesión: ' + err) //fijarse el error, para que sea general (usuario no existe o contraseña invalida).
+      error: err => alert('Error al iniciar sesión: ' + err)
     });
   }
 }
