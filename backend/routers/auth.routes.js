@@ -5,12 +5,12 @@ const { poolPromise, sql } = require('../routers/db'); // ruta según dónde est
 
 const router = express.Router();
 
-// REGISTRO
 router.post('/register', async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, nombre, apellido, telefono, direccion, dni } = req.body;
 
-  if (!email || !password)
-    return res.status(400).json({ message: 'Email y contraseña requeridos' });
+  if (!email || !password || !nombre || !apellido || !telefono || !direccion || !dni) {
+    return res.status(400).json({ message: 'Todos los campos son requeridos' });
+  }
 
   try {
     const pool = await poolPromise;
@@ -28,12 +28,20 @@ router.post('/register', async (req, res) => {
     await pool.request()
       .input('email', sql.VarChar, email)
       .input('password', sql.VarChar, hashedPassword)
-      .query('INSERT INTO Usuarios (email, password) VALUES (@email, @password)');
+      .input('nombre', sql.VarChar, nombre)
+      .input('apellido', sql.VarChar, apellido)
+      .input('telefono', sql.VarChar, telefono)
+      .input('direccion', sql.VarChar, direccion)
+      .input('dni', sql.VarChar, dni)
+      .query(`
+        INSERT INTO Usuarios (email, password, nombre, apellido, telefono, direccion, dni)
+        VALUES (@email, @password, @nombre, @apellido, @telefono, @direccion, @dni)
+      `);
 
     res.status(201).json({ message: 'Usuario registrado con éxito' });
 
   } catch (err) {
-    console.error('❌ Error al registrar:', err);
+    console.error('Error al registrar:', err);
     res.status(500).json({ message: 'Error en el servidor' });
   }
 });
