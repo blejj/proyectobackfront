@@ -34,3 +34,43 @@
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
+
+@media (max-width: 1024px) {
+  .bank-promotions {
+    padding: 2rem 1.5rem;
+  }
+  
+  .bank-logos {
+    gap: 1rem;
+  }
+
+  .bank-logos img {
+    height: 35px;
+  }
+}
+
+/* Móviles */
+@media (max-width: 600px) {
+  .bank-promotions {
+    padding: 1.5rem 1rem;
+  }
+
+  .bank-logos {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .bank-logos img {
+    height: 30px;
+    margin-bottom: 0.5rem;
+  }
+
+  .promo-cards {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .promo-card {
+    padding: 0.75rem;
+  }
+}
