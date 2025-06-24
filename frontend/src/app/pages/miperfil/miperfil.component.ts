@@ -8,16 +8,17 @@ import { NavbarComponent } from '../../home/sections/navbar/navbar.component';
 @Component({
   selector: 'app-mi-perfil',
   standalone: true,
-  imports: [CommonModule, FormsModule,NavbarComponent],
+  imports: [CommonModule, FormsModule, NavbarComponent],
   templateUrl: './miperfil.component.html',
   styleUrls: ['./miperfil.component.css']
 })
 export class MiPerfilComponent implements OnInit {
   usuario: any = {};
+  usuarioOriginal: any = {}; 
   isLoading = false;
   error: string | null = null;
   success: string | null = null;
-
+  editMode = false; 
   constructor(private usuarioService: UsuarioService) {}
 
   ngOnInit(): void {
@@ -35,7 +36,8 @@ export class MiPerfilComponent implements OnInit {
 
     this.usuarioService.getUserByEmail(email).subscribe({
       next: (user) => {
-        this.usuario = user;
+        this.usuario = { ...user }; 
+        this.usuarioOriginal = { ...user }; 
         this.isLoading = false;
       },
       error: (err) => {
@@ -46,32 +48,38 @@ export class MiPerfilComponent implements OnInit {
     });
   }
 
- guardarCambios(): void {
-  const email = encodeURIComponent(this.usuario.email);
 
-  this.usuarioService.updateUserByEmail(email, this.usuario).subscribe({
-    next: (res) => {
-      this.success = 'Datos actualizados con éxito';
-      this.error = null;
-    },
-    error: (err) => {
-      this.error = 'Error al actualizar los datos';
-      this.success = null;
-      console.error(err);
-    }
-  });
-}
+  activarEdicionGlobal(): void {
+    this.editMode = true;
+    this.success = null; 
+    this.error = null;   
+  }
+
+ 
+  guardarCambiosGlobal(): void {
+ 
+    const email = encodeURIComponent(this.usuario.email); 
+
+    this.usuarioService.updateUserByEmail(email, this.usuario).subscribe({
+      next: (res) => {
+        this.success = 'Datos actualizados con éxito';
+        this.error = null;
+        this.editMode = false; 
+        this.usuarioOriginal = { ...this.usuario }; 
+      },
+      error: (err) => {
+        this.error = 'Error al actualizar los datos';
+        this.success = null;
+        console.error(err);
+      }
+    });
+  }
 
 
-  editandoCampo: string | null = null;
-
-activarEdicion(campo: string): void {
-  this.editandoCampo = campo;
-}
-
-guardarCampo(campo: string): void {
-  this.editandoCampo = null;
-  this.guardarCambios(); 
-}
-
+  cancelarEdicionGlobal(): void {
+    this.usuario = { ...this.usuarioOriginal }; 
+    this.editMode = false; 
+    this.error = null;    
+    this.success = null;   
+  }
 }
