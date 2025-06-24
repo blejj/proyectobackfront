@@ -4,6 +4,8 @@ require('./config/db'); // Solo para inicializar la conexión
 const bookRoutes = require('./routes/book.routes');
 
 const authRoutes = require('./routes/auth.routes');
+const checkoutRoutes = require('./routes/checkout.routes');
+
 
 const app = express();
 const HOSTNAME = '127.0.0.1';
@@ -17,6 +19,7 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 
 app.use('/api/books', bookRoutes);
+app.use('/api/checkout', checkoutRoutes);
 
 // Ruta de prueba
 app.get('/', (req, res) => {

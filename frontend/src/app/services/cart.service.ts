@@ -66,4 +66,9 @@ export class CartService {
 
     this.notificationService.showSuccess(`${item.title} agregado al carrito`);
   }
+
+  clearCart(): void {
+    this.cartItemsSubject.next([]);
+    this.notificationService.showSuccess('Carrito vaciado correctamente');
+  }
 }
