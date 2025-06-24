@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { RegisterUser } from '../../models/register.model';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +12,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-  user = {
+  user: RegisterUser = {
     nombre: '',
     apellido: '',
     email: '',
@@ -19,7 +20,7 @@ export class RegisterComponent {
     telefono: '',
     direccion: '',
     dni: ''
-  }; //este también.
+  };
 
   constructor(private authService: AuthService) {}
 
