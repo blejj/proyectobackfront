@@ -3,13 +3,13 @@ const sql = require('mssql');
 const config = {
   user: 'FranB',
   password: 'Test1234',
-  server: 'DESKTOP-KDUF4HE\\FRANCOBD',
+  server: '127.0.0.1',
+  port: 5964,
   database: 'Libreria',
   options: {
     encrypt: false,
     trustServerCertificate: true
-  },
-  port: 5964
+  }
 };
 
 const poolPromise = new sql.ConnectionPool(config)

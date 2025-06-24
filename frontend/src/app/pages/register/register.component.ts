@@ -10,7 +10,15 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './register.component.html'
 })
 export class RegisterComponent {
-  user = { email: '', password: '' };
+  user = {
+    nombre: '',
+    apellido: '',
+    email: '',
+    password: '',
+    telefono: '',
+    direccion: '',
+    dni: ''
+  };
 
   constructor(private authService: AuthService) {}
 

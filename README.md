@@ -1,12 +1,11 @@
 # Project
 
 ## Introducción
-Proyecto académico desarrollado para las materias Frontend y Backend. Objetivo: un sitio donde se pueda realizar compra, venta y alquiler de libros, trabajando con base de datos y consumiendo API pública.  
+Proyecto académico desarrollado para las materias Frontend y Backend. Objetivo: un shop de libros, trabajando con base de datos y consumiendo API pública.  
 
 ## Tecnologías utilizadas
 * Typescript
 * Angular
-* Tailwind CSS
 * SQL
 * 
 

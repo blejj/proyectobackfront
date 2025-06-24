@@ -19,17 +19,17 @@ export class ApiService {
           title: book.title,
           author: book.author_name ? book.author_name[0] : 'Autor desconocido',
           price: this.randomPriceGenerator(), // La API no provee precios
-          cover: book.cover_i 
+          cover: book.cover_i
             ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`
             : 'assets/default-book-cover.jpg',
-          description: book.first_sentence 
-            ? book.first_sentence[0] 
+          description: book.first_sentence
+            ? book.first_sentence[0]
             : 'Descripción no disponible'
         }));
       })
     );
   }
-  
+
   private randomPriceGenerator(): number{
     return Math.floor(Math.random() * 50) + 10;
   }
