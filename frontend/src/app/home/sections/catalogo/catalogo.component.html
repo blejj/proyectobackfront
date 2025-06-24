@@ -4,21 +4,29 @@
   <div class="row">
     <!-- Filtros -->
     <div class="col-md-3 mb-3">
+      <h5>Buscar libros</h5>
+      <div class="mb-3">
+        <input
+          class="form-control"
+          [(ngModel)]="searchQuery"
+          placeholder="Harry Potter, Dune..."
+        />
+        <button class="btn btn-primary mt-2 w-100" (click)="buscarLibros()">Buscar</button>
+      </div>
+
       <h5>Filtros</h5>
       <div class="mb-3">
         <label class="form-label">Precio</label>
         <div class="d-flex">
-          <input class="form-control me-2" type="number" [(ngModel)]="filters.minPrice" placeholder="Desde">
-          <input class="form-control" type="number" [(ngModel)]="filters.maxPrice" placeholder="Hasta">
+          <input class="form-control me-2" type="number" [(ngModel)]="filters.minPrice" placeholder="Desde" />
+          <input class="form-control" type="number" [(ngModel)]="filters.maxPrice" placeholder="Hasta" />
         </div>
       </div>
 
       <div class="mb-3">
         <label class="form-label">Autor</label>
-        <input class="form-control" [(ngModel)]="filters.author" placeholder="Buscar autor">
+        <input class="form-control" [(ngModel)]="filters.author" placeholder="Buscar autor" />
       </div>
-
-      <!-- Otros filtros futuros aquí -->
     </div>
 
     <!-- Resultados -->
@@ -30,9 +38,14 @@
               <h5 class="card-title">{{ book.title }}</h5>
               <p class="card-text">Autor: {{ book.author }}</p>
               <p class="card-text"><strong>${{ book.price | number }}</strong></p>
+              <p class="card-text text-muted">Año: {{ book.year }}</p>
               <button class="btn btn-primary btn-sm w-100">Comprar</button>
             </div>
           </div>
+        </div>
+
+        <div *ngIf="filteredBooks.length === 0" class="text-center mt-4">
+          <p>No se encontraron libros con esos filtros.</p>
         </div>
       </div>
     </div>
