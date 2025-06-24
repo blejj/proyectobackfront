@@ -18,6 +18,7 @@ export class LoginComponent {
   onLogin() {
     this.authService.login(this.user).subscribe({
       next: res => {
+        localStorage.setItem('email', this.user.email);
         this.router.navigate(['/home']);
         console.log('Login exitoso:', res);
       },

@@ -1,11 +1,11 @@
 const express = require('express');
 const cors = require('cors');
-require('./config/db'); // Solo para inicializar la conexión
-const bookRoutes = require('./routes/book.routes');
+require('./config/db'); // Inicializa conexión a la BD
 
 const authRoutes = require('./routes/auth.routes');
+const bookRoutes = require('./routes/book.routes');
+const userRoutes = require('./routes/user.routes');
 const checkoutRoutes = require('./routes/checkout.routes');
-
 
 const app = express();
 const HOSTNAME = '127.0.0.1';
@@ -17,8 +17,8 @@ app.use(express.json());
 
 // Rutas
 app.use('/api/auth', authRoutes);
-
 app.use('/api/books', bookRoutes);
+app.use('/api/user', userRoutes);
 app.use('/api/checkout', checkoutRoutes);
 
 // Ruta de prueba
