@@ -24,11 +24,24 @@ const getCardById = async (idTarjeta) => {
   return result.recordset[0];
 };
 
-const deleteCard = async (idTarjeta) => {
+const getCardByUserId = async (idUsuario) => {
   const pool = await poolPromise;
-  await pool.request()
-    .input('idTarjeta', sql.Int, idTarjeta)
-    .query('DELETE FROM Tarjetas WHERE idTarjeta = @idTarjeta');
+  const result = await pool.request()
+    .input('idUsuario', sql.Int, idUsuario)
+    .query('SELECT TOP 1 * FROM Tarjetas WHERE idUsuario = @idUsuario');
+
+  return result.recordset[0];
 };
 
-module.exports = { insertCard, getCardById, deleteCard };
+
+const deleteCard = async (idTarjeta, idUsuario) => {
+  const pool = await poolPromise;
+  const result = await pool.request()
+    .input('idTarjeta', sql.Int, idTarjeta)
+    .input('idUsuario', sql.Int, idUsuario)
+    .query('DELETE FROM Tarjetas WHERE idTarjeta = @idTarjeta AND idUsuario = @idUsuario');
+
+  return result.rowsAffected[0] > 0; // Retorna true si se borró, false si no se encontró
+};
+
+module.exports = { insertCard, getCardById, deleteCard, getCardByUserId };

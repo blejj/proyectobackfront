@@ -22,6 +22,8 @@ export class CheckoutComponent {
     idUsuario: 0,
     importe: 0 
   };
+
+  cardId: number = 0;
   
   constructor(
     private checkoutService: CheckoutService,
@@ -55,4 +57,34 @@ export class CheckoutComponent {
       }
     });
   }
+
+  deleteCard(): void {
+  const userId = Number(localStorage.getItem('userId'));
+
+  this.checkoutService.getCardByUserId(userId).subscribe({
+    next: (card: any) => {
+      if (!card || !card.idTarjeta) {
+        alert('No se encontró tarjeta para eliminar.');
+        return;
+      }
+      this.checkoutService.deleteCard(card.idTarjeta, userId).subscribe({
+        next: (response) => {
+          alert('Tarjeta eliminada correctamente');
+          this.router.navigate(['/home']);
+        },
+        error: (err) => {
+          alert('Error al eliminar la tarjeta');
+          console.error(err);
+        }
+      });
+    },
+    error: (err) => {
+      alert('Error al obtener tarjeta');
+      console.error(err);
+    }
+  });
+}
+
+
+  
 }
