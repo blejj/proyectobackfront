@@ -1,0 +1,40 @@
+<app-navbar></app-navbar>
+
+<div class="container-fluid mt-4">
+  <div class="row">
+    <!-- Filtros -->
+    <div class="col-md-3 mb-3">
+      <h5>Filtros</h5>
+      <div class="mb-3">
+        <label class="form-label">Precio</label>
+        <div class="d-flex">
+          <input class="form-control me-2" type="number" [(ngModel)]="filters.minPrice" placeholder="Desde">
+          <input class="form-control" type="number" [(ngModel)]="filters.maxPrice" placeholder="Hasta">
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Autor</label>
+        <input class="form-control" [(ngModel)]="filters.author" placeholder="Buscar autor">
+      </div>
+
+      <!-- Otros filtros futuros aquí -->
+    </div>
+
+    <!-- Resultados -->
+    <div class="col-md-9">
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col" *ngFor="let book of filteredBooks">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">{{ book.title }}</h5>
+              <p class="card-text">Autor: {{ book.author }}</p>
+              <p class="card-text"><strong>${{ book.price | number }}</strong></p>
+              <button class="btn btn-primary btn-sm w-100">Comprar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

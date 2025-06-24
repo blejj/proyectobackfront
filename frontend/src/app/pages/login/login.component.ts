@@ -1,8 +1,8 @@
-// src/app/pages/login.component.ts
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,14 +13,15 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent {
   user = { email: '', password: '' };
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   onLogin() {
     this.authService.login(this.user).subscribe({
       next: res => {
+        this.router.navigate(['/home']);
         console.log('Login exitoso:', res);
       },
-      error: err => console.error('Error en login:', err)
+      error: err => alert('Error al iniciar sesión: ' + err) //fijarse el error, para que sea general (usuario no existe o contraseña invalida).
     });
   }
 }
