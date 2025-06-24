@@ -13,19 +13,24 @@ const saveCard = async (data) => {
   return { status: 201, body: { message: 'Tarjeta guardada con éxito' } };
 };
 
-const removeCard = async (idTarjeta) => {
-  if (!idTarjeta) {
-    return { status: 400, body: { message: 'El id de la tarjeta es requerido' } };
+const removeCard = async (idTarjeta, idUsuario) => {
+  const success = await checkoutRepository.deleteCard(idTarjeta, idUsuario);
+
+  if (!success) {
+    return { status: 404, body: { message: 'Tarjeta no encontrada o no pertenece al usuario' } };
   }
 
-  const tarjeta = await checkoutRepository.getCardById(idTarjeta);
-  if (!tarjeta) {
-    return { status: 404, body: { message: 'Tarjeta no encontrada' } };
-  }
-
-  await checkoutRepository.deleteCard(idTarjeta);
-
-  return { status: 200, body: { message: 'Tarjeta eliminada con éxito' } };
+  return { status: 200, body: { message: 'Tarjeta eliminada correctamente' } };
 };
 
-module.exports = { saveCard, removeCard };
+const getCardByUserId = async (userId) => {
+  const card = await checkoutRepository.getCardByUserId(userId);
+  if (card) {
+    return { status: 200, body: card };
+  } else {
+    return { status: 404, body: { message: 'No se encontró la tarjeta' } };
+  }
+};
+
+
+module.exports = { saveCard, removeCard, getCardByUserId };

@@ -15,4 +15,14 @@ export class CheckoutService {
   processPayment(paymentData: Payment): Observable<any> {
     return this.http.post(`${this.apiUrl}`, paymentData);
   }
+
+  deleteCard(cardId: number, userId: number) {
+  return this.http.delete(`${this.apiUrl}/${cardId}?idUsuario=${userId}`);
+}
+
+  getCardByUserId(userId: number) {
+    return this.http.get(`${this.apiUrl}/${userId}`);
+  }
+
+
 }
