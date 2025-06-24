@@ -6,8 +6,9 @@ Proyecto académico desarrollado para las materias Frontend y Backend. Objetivo:
 ## Tecnologías utilizadas
 * Typescript
 * Angular
+* Angular Material
 * SQL
-* 
+* Bootstrap 
 
 ## Consumo de API pública
 https://openlibrary.org/developers/api
