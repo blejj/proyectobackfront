@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { Payment } from '../../models/payment.model';
 import { CheckoutService } from '../../services/checkout.service';
 import { CartService } from '../../services/cart.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Payment } from '../../models/payment.model';
 
 @Component({
   selector: 'app-checkout',
@@ -14,11 +14,13 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent {
+
   paymentData: Payment = {
-    cardNumber: '',
-    expirationDate: '',
-    cvv: '',
-    amount: 0,
+    nroTarjeta: '',
+    fechaVencimiento: '',
+    clave: '',
+    idUsuario: 1,  // Hardcodeado para test
+    importe: 1000 
   };
   
   constructor(
@@ -26,11 +28,11 @@ export class CheckoutComponent {
     private cartService: CartService,
     private router: Router
   ) {
-    this.paymentData.amount = this.cartService.getTotalPrice();
+    this.paymentData.importe = this.cartService.getTotalPrice();
   }
 
   submitPayment(): void {
-    if (!this.paymentData.cardNumber || !this.paymentData.expirationDate || !this.paymentData.cvv) {
+    if (!this.paymentData.nroTarjeta || !this.paymentData.fechaVencimiento || !this.paymentData.clave) {
       alert('Por favor complete todos los campos');
       return;
     }

@@ -3,25 +3,25 @@
   
   <form (ngSubmit)="submitPayment()" class="payment-form">
     <div class="form-group">
-      <label for="cardNumber">Número de Tarjeta:</label>
-      <input type="text" id="cardNumber" [(ngModel)]="paymentData.cardNumber" 
-             name="cardNumber" required placeholder="1234 5678 9012 3456">
+      <label for="nroTarjeta">Número de Tarjeta:</label>
+      <input type="text" id="nroTarjeta" [(ngModel)]="paymentData.nroTarjeta" 
+             name="nroTarjeta" required placeholder="1234 5678 9012 3456">
     </div>
 
     <div class="form-group">
-      <label for="expirationDate">Fecha de Vencimiento:</label>
-      <input type="text" id="expirationDate" [(ngModel)]="paymentData.expirationDate" 
-             name="expirationDate" required placeholder="MM/AA">
+      <label for="fechaVencimiento">Fecha de Vencimiento:</label>
+      <input type="text" id="fechaVencimiento" [(ngModel)]="paymentData.fechaVencimiento" 
+             name="fechaVencimiento" required placeholder="MM/AA">
     </div>
 
     <div class="form-group">
-      <label for="cvv">CVV:</label>
-      <input type="text" id="cvv" [(ngModel)]="paymentData.cvv" 
-             name="cvv" required placeholder="123">
+      <label for="clave">CVV:</label>
+      <input type="text" id="clave" [(ngModel)]="paymentData.clave" 
+             name="clave" required placeholder="123">
     </div>
 
     <div class="total-section">
-      <h3>Total a pagar: {{ paymentData.amount | currency }}</h3>
+      <h3>Total a pagar: {{ paymentData.importe | currency }}</h3>
     </div>
 
     <button type="submit" class="submit-btn">Confirmar Pago</button>

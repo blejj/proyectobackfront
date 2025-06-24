@@ -13,6 +13,6 @@ export class CheckoutService {
   constructor(private http: HttpClient) { }
 
   processPayment(paymentData: Payment): Observable<any> {
-    return this.http.post(`${this.apiUrl}/process`, paymentData);
+    return this.http.post(`${this.apiUrl}`, paymentData);
   }
 }

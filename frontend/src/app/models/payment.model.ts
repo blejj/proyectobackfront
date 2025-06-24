@@ -1,6 +1,7 @@
 export interface Payment {
-  cardNumber: string;
-  expirationDate: string;
-  cvv: string;
-  amount: number;
+  nroTarjeta: string;
+  fechaVencimiento: string;
+  clave: string;
+  idUsuario: number;
+  importe: number;
 }
