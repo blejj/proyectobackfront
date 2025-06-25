@@ -14,14 +14,6 @@ import { FooterComponent } from '../footer/footer.component';
   styleUrls: ['./catalogo.component.css']
 })
 export class CatalogoComponent implements OnInit {
-
-  constructor(
-      private cartService: CartService,
-  ){}
-
-  private bookService = inject(BookService);
-
-
   books: any[] = [];
   searchQuery: string = ''; // Búsqueda inicial por defecto
 
@@ -30,6 +22,12 @@ export class CatalogoComponent implements OnInit {
     maxPrice: 100000,
     author: ''
   };
+
+  constructor(
+      private cartService: CartService,
+  ){}
+
+  private bookService = inject(BookService);
 
   ngOnInit() {
     this.buscarLibros(); // Carga inicial
