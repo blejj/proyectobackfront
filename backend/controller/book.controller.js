@@ -9,13 +9,14 @@ const getBooks = async (req, res) => {
       const coverId = doc.cover_i;
 
       return {
+        id: doc.key ? doc.key.replace('/works/', '') : `book-${index}`,
         title: doc.title,
         author: doc.author_name ? doc.author_name.join(', ') : 'Desconocido',
         year: doc.first_publish_year || 'N/A',
         price: Math.floor(Math.random() * 50000) + 10000,
         cover: coverId
           ? `https://covers.openlibrary.org/b/id/${coverId}-M.jpg`
-          : 'https://via.placeholder.com/128x195?text=Sin+imagen'
+          : 'https://placehold.co/128x195?text=Sin+imagen'
       };
     });
 
