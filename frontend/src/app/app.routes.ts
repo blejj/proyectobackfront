@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { CatalogoComponent } from './home/sections/catalogo/catalogo.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { MiPerfilComponent } from './pages/miperfil/miperfil.component';
+import { ChatAiComponent } from './components/chat-ai/chat-ai.component';
 
 
 export const routes: Routes = [
@@ -15,5 +16,6 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: 'checkout', component: CheckoutComponent },
   { path: 'perfil', component: MiPerfilComponent},
+  { path: 'chat', component: ChatAiComponent },
   { path: '**', redirectTo: 'login' }
 ];

@@ -6,6 +6,7 @@ const authRoutes = require('./routes/auth.routes');
 const bookRoutes = require('./routes/book.routes');
 const userRoutes = require('./routes/user.routes');
 const checkoutRoutes = require('./routes/checkout.routes');
+const aiGeminiRoutes = require('./routes/aiGemini.routes');
 
 const app = express();
 const HOSTNAME = '127.0.0.1';
@@ -20,6 +21,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/books', bookRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/checkout', checkoutRoutes);
+app.use('/api/ai', aiGeminiRoutes);
 
 // Ruta de prueba
 app.get('/', (req, res) => {
