@@ -14,3 +14,5 @@ dist/
 *.chunk.*
 
 db.js
+
+.env
