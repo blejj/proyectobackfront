@@ -16,8 +16,10 @@
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
     "express": "^5.1.0",
+    "express-session": "^1.18.2",
     "jsonwebtoken": "^9.0.2",
-    "mssql": "^11.0.1"
+    "mssql": "^11.0.1",
+    "openid-client": "^5.7.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
