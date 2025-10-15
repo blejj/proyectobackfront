@@ -3,6 +3,7 @@ const express = require('express');
 const session = require('express-session');
 const cors = require('cors');
 require('./config/db.js');
+const { specs, swaggerUi } = require('./config/swagger.config');
 
 const authRoutes = require('./routes/auth.routes.js');
 const bookRoutes = require('./routes/book.routes.js');
@@ -99,3 +100,17 @@ app.get('/', (req, res) => res.send('¡Backend funcionando con CommonJS! 🚀'))
     console.error('❌ Error cargando openid-client:', err);
   }
 })();
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs, {
+  explorer: true,
+  customCss: '.swagger-ui .topbar { display: none }',
+  customSiteTitle: "API Documentation",
+  swaggerOptions: {
+    persistAuthorization: true, // Mantiene el token JWT entre recargas
+  }
+}));
+
+app.get('/api-docs.json', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.send(specs);
+});
