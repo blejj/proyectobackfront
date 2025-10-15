@@ -13,6 +13,9 @@ Proyecto académico desarrollado para las materias Frontend y Backend. Objetivo:
 ## Consumo de API pública
 https://openlibrary.org/developers/api
 
+## Swagger API Doc
+http://localhost:3000/api-docs/
+
 ## URL Prod:
 -
 
