@@ -1,23 +1,34 @@
 .hero-container {
-  min-height: 100vh;
+  position: relative;
   width: 100%;
+  height: 100vh; /* ocupa toda la pantalla */
   display: flex;
   flex-direction: column;
-  position: relative;
-  color: #fff;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+  overflow: hidden;
+  color: #fff;
+  z-index: 0; /* muy importante: permite que el ::before quede detrás */
 }
 
+/* Agregamos un espacio para compensar el navbar fijo */
+.hero-content {
+  padding-top: 100px; /* altura aproximada del navbar */
+  width: 100%;
+}
+
+/* Título */
 .hero-container h2 {
   font-size: 3rem;
   font-weight: 700;
   margin-bottom: 1rem;
   font-family: "Poppins", sans-serif;
-  font-style: normal;
   color: rgb(37, 68, 209);
   text-shadow: 2px 2px 6px rgba(53, 52, 52, 0.6);
 }
 
+/* Descripción */
 .hero-container .hero-description {
   font-size: 1.25rem;
   max-width: 900px;
@@ -27,4 +38,5 @@
   text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
   background-color: rgb(98, 142, 184);
   padding: 10px;
+  border-radius: 6px;
 }

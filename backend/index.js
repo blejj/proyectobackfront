@@ -1,19 +1,22 @@
-// index.js
+// Importaciones
 const express = require('express');
 const session = require('express-session');
 const cors = require('cors');
 require('./config/db.js');
 
+// Importa las rutas personalizadas para autenticación, libros, usuarios, pagos e IA
 const authRoutes = require('./routes/auth.routes.js');
 const bookRoutes = require('./routes/book.routes.js');
 const userRoutes = require('./routes/user.routes.js');
 const checkoutRoutes = require('./routes/checkout.routes.js');
 const aiGeminiRoutes = require('./routes/aiGemini.routes');
 
+// Crea una instancia de la aplicación Express
 const app = express();
+// Puerto donde se levanta el servidor
 const PORT = 3000;
 
-// Middleware
+// Habilitamos CORS para permitir peticiones desde el frontend (http://localhost:4200)
 app.use(cors({ origin: 'http://localhost:4200', credentials: true }));
 app.use(express.json());
 app.use(session({
@@ -29,7 +32,6 @@ app.get('/', (req, res) => res.send('¡Backend funcionando con CommonJS! 🚀'))
 // ---------- Cargamos openid-client dinámicamente ----------
 (async () => {
   try {
-    // 👇 FIX: obtener el default export
     const openid = await import('openid-client');
     const { Issuer, generators } = openid.default || openid;
 
@@ -83,7 +85,14 @@ app.get('/', (req, res) => res.send('¡Backend funcionando con CommonJS! 🚀'))
       }
     });
 
-    // Rutas internas de tu app
+    // LOGOUT 
+    app.get('/logout', (req, res) => {
+      req.session.destroy(() => {
+        const logoutUrl = `https://us-east-1dvurikhle.auth.us-east-1.amazoncognito.com/logout?client_id=1951tqfvb7fakucpruls1e1875&logout_uri=http://localhost:4200/login`;
+        res.redirect(logoutUrl);
+      });
+    });
+    // Rutas internas
     app.use('/api/auth', authRoutes);
     app.use('/api/books', bookRoutes);
     app.use('/api/user', userRoutes);

@@ -10,9 +10,12 @@
 }
 html,
 body {
-  background: linear-gradient(135deg, #bbc8f0, hwb(214 58% 5%));
   scroll-behavior: smooth;
+  min-height: 200vh; /* permite ver el efecto al hacer scroll */
+  transition: background 0.3s linear;
+  background: linear-gradient(180deg, #fcefff, #fcf7ff);
 }
+
 h1 {
   margin: 0;
   padding: 0;

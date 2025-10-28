@@ -1,3 +1,224 @@
-section{
-    padding: 3rem;
+/* ----------------------------------- */
+/* Estilos Generales de la Segunda Versión */
+/* ----------------------------------- */
+
+/* Usamos la misma clase principal y le agregamos la versión para reajustes */
+.main-container.second-version {
+    background-color: transparent; /* Quitamos el fondo negro del contenedor principal */
+    padding: 0;
+    max-width: 1400px;
+    margin: 40px auto;
+}
+
+.main-container.second-version .content-wrapper {
+    align-items: center; /* Centrar verticalmente las dos columnas */
+    gap: 100px; /* Más espacio entre las columnas */
+}
+
+
+/* ----------------------------------- */
+/* Columna Izquierda: El Mockup de la App */
+/* ----------------------------------- */
+.app-mockup-column {
+    flex: 1.5; /* Darle más espacio al mockup que a la columna de marketing */
+}
+
+.app-window-container {
+    /* El contenedor que tiene el fondo negro y el gran border-radius */
+    background-color: #262626; /* Color de fondo oscuro/negro */
+    border-radius: 40px; /* Bordes grandes y redondeados */
+    padding: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5); /* Sombra para profundidad */
+    overflow: hidden; /* Para contener la imagen de fondo */
+    position: relative; /* Necesario para las etiquetas flotantes */
+}
+
+.app-content-area {
+    /* Contenedor interno para manejar el contenido */
+    display: flex;
+    flex-direction: column;
+}
+
+/* El fondo borroso de la imagen (simulación) */
+.app-background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Simulamos el fondo oscuro con un gradiente/capa */
+    background: linear-gradient(180deg, rgba(200, 80, 0, 0.4), rgba(0, 0, 0, 0.7)),
+                url('image_47aebd.jpg'); /* En un sitio real, usarías la imagen aquí */
+    background-size: cover;
+    background-position: center;
+    filter: blur(8px); /* Efecto de desenfoque */
+    z-index: 1;
+    border-radius: 40px; /* Asegura que el blur respete los bordes */
+}
+
+/* ------------------ */
+/* Contenido de Texto */
+/* ------------------ */
+
+.original-text, .edited-text-block {
+    position: relative;
+    z-index: 2; /* Para que el texto esté por encima del fondo borroso */
+    padding: 20px;
+    color: rgba(255, 255, 255, 0.8); /* Texto blanco semitransparente */
+}
+
+.original-text {
+    height: 300px; /* Altura fija para el texto superior */
+    padding-bottom: 0;
+    overflow: hidden; /* Simula que es una ventana de desplazamiento */
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.edited-text-block {
+    background-color: #333333; /* Color de fondo gris claro para el texto editado */
+    border-radius: 12px;
+    margin: 20px 20px 0 20px; /* Espaciado alrededor */
+    padding: 15px 20px;
+    color: white; /* Texto blanco sólido */
+    font-size: 17px;
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+/* Barra de Edición (abajo) */
+.editing-toolbar {
+    background-color: black;
+    color: white;
+    border-radius: 0 0 12px 12px;
+    margin: 0 20px 20px 20px; /* Margen superior para separarlo del texto editado */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.toolbar-icons span {
+    margin-right: 15px;
+    font-size: 18px;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.toolbar-arrow {
+    background-color: #ff8c00; /* Color naranja del botón */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+/* ------------------ */
+/* Etiquetas flotantes de edición */
+/* ------------------ */
+
+.edit-tag {
+    position: absolute;
+    background-color: #ff8c00; /* Naranja/Ámbar */
+    color: black;
+    padding: 4px 8px;
+    border-radius: 15px;
+    font-size: 13px;
+    font-weight: bold;
+    white-space: nowrap; /* Evita que el texto se rompa */
+    z-index: 3; /* Asegura que estén por encima de todo */
+}
+
+/* Colores específicos para simular los de la imagen */
+.removed-filler { background-color: #ff8c00; color: black; }
+.fixed-spelling { background-color: #ff8c00; color: black; }
+.added-dictionary { background-color: #8a2be2; color: white; } /* Uno de ellos tiene un color diferente en la imagen */
+
+
+/* ----------------------------------- */
+/* Columna Derecha: Marketing y CTA */
+/* ----------------------------------- */
+
+.marketing-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.feature-title {
+    font-size: 70px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: black; /* Color principal del texto, asumiendo un fondo blanco para el sitio */
+    margin-bottom: 20px;
+    /* Efecto para simular el ícono de sol/rayos detrás de "AI" */
+    position: relative;
+    /* Puedes usar una imagen o un icono SVG real aquí */
+}
+
+.feature-title::before {
+    content: "☀"; /* Símbolo de sol como placeholder del ícono */
+    position: absolute;
+    top: -20px;
+    left: -10px;
+    font-size: 50px;
+    color: #ff8c00; /* Color naranja */
+    opacity: 0.4;
+    transform: rotate(20deg);
+}
+
+.highlight-text {
+    color: #ff8c00; /* Color naranja para destacar "Auto Edits" */
+}
+
+.feature-description {
+    font-size: 20px;
+    color: #333333;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    max-width: 450px;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.try-flow-button {
+    background-color: transparent;
+    border: 1px solid #9a6ec2;
+    color: #9a6ec2;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+/* Reutilizar la clase del botón morado anterior */
+.download-button.purple {
+    background-color: #9a6ec2;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.download-button.purple:hover {
+    background-color: #7b58a8;
+}
+
+.try-flow-button:hover {
+    background-color: #f0f0f0;
 }

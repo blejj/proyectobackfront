@@ -1,76 +1,127 @@
-.bank-promotions {
-  padding: 3rem;
-  background: #e0eaf3;
-  text-align: center;
+/* ----------------------------------- */
+/* Estilos generales del contenedor principal */
+/* ----------------------------------- */
+.main-container {
+    /* Color de fondo oscuro y bordes redondeados grandes */
+    background-color: #1a1a1a; /* Un color muy oscuro similar al de la imagen */
+    border-radius: 40px; /* Bordes redondeados */
+    padding: 60px 80px; /* Espaciado interno generoso */
+    width: 100%; /* Ancho que ocupa la pantalla */
+    max-width: 80%; /* Límite de ancho para que no se estire demasiado */
+    margin: 0px auto; /* Centrar en la página */
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho/alto total */
+    font-family: Arial, sans-serif; /* Fuente de ejemplo */
 }
 
-.bank-logos {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin: 2rem 0;
+.content-wrapper {
+    display: flex; /* Usar Flexbox para dividir en dos columnas */
+    justify-content: space-between; /* Espaciar las columnas */
+    gap: 50px; /* Espacio entre las columnas */
 }
 
-.bank-logos img {
-  height: 40px;
-  filter: grayscale(30%);
-  transition: all 0.3s;
+.left-content, .right-content {
+    /* Definir el ancho de las columnas, puedes ajustarlo */
+    flex: 1; /* Permite que ambos tomen espacio equitativamente */
 }
 
-.bank-logos img:hover {
-  filter: grayscale(0);
-  transform: scale(1.05);
+/* ----------------------------------- */
+/* Estilos del contenido izquierdo (Título y Etiquetas) */
+/* ----------------------------------- */
+.main-title {
+    font-size: 68px; /* Tamaño de fuente grande */
+    font-weight: 700;
+    line-height: 1.1;
+    color: white; /* Color principal del texto */
+    margin-bottom: 40px;
 }
 
-.promo-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1rem;
+/* Para el efecto de color diferente en una palabra (simulando "for you") */
+.main-title > span {
+    color: #b088cc; /* Un color morado claro */
 }
 
-.promo-card {
-  background: white;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+/* Puedes envolver "for you" en un span en el HTML si quieres el color diferente: */
+/* <h1 class="main-title">Flow is made <br> <span>for you</span></h1> */
+
+
+.tags-section {
+    display: flex;
+    flex-direction: column; /* Apila las filas de etiquetas verticalmente */
+    gap: 10px; /* Espacio entre cada fila de etiquetas */
+    max-width: 500px; /* Límite de ancho para que no se extiendan demasiado */
 }
 
-@media (max-width: 1024px) {
-  .bank-promotions {
-    padding: 2rem 1.5rem;
-  }
-  
-  .bank-logos {
-    gap: 1rem;
-  }
-
-  .bank-logos img {
-    height: 35px;
-  }
+.tag-row {
+    display: flex;
+    flex-wrap: wrap; /* Permite que las etiquetas salten de línea si es necesario */
+    gap: 8px; /* Espacio entre etiquetas en la misma fila */
 }
 
-/* Móviles */
-@media (max-width: 600px) {
-  .bank-promotions {
-    padding: 1.5rem 1rem;
-  }
+.tag, .main-tag {
+    /* Estilos base de las etiquetas */
+    color: white;
+    background-color: #333333; /* Fondo gris oscuro para las etiquetas */
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
 
-  .bank-logos {
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
+.main-tag {
+    /* Estilo para la etiqueta destacada ("Accesibility") */
+    background-color: #b088cc; /* Color morado para el fondo */
+    color: white;
+    font-weight: bold;
+}
 
-  .bank-logos img {
-    height: 30px;
-    margin-bottom: 0.5rem;
-  }
 
-  .promo-cards {
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
-  }
+/* ----------------------------------- */
+/* Estilos del contenido derecho (Ilustración y texto secundario) */
+/* ----------------------------------- */
+.right-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinea los elementos a la izquierda */
+}
 
-  .promo-card {
-    padding: 0.75rem;
-  }
+.illustration-placeholder {
+    /* Espacio para la ilustración */
+    width: 100%;
+    height: 300px; /* Altura de ejemplo */
+    background-color: #333333; /* Color de relleno para simular la ilustración */
+    border-radius: 20px;
+    margin-bottom: 40px;
+    /* Estilos adicionales si deseas simular la forma de la persona */
+    position: relative;
+}
+
+.secondary-title {
+    font-size: 32px;
+    color: white;
+    margin-bottom: 15px;
+}
+
+.description {
+    font-size: 18px;
+    color: #cccccc; /* Color gris claro para el texto secundario */
+    line-height: 1.5;
+    margin-bottom: 30px;
+}
+
+.download-button {
+    background-color: #b088cc; /* Color morado del botón */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.download-button:hover {
+    background-color: #9a6ec2; /* Un tono un poco más oscuro al pasar el ratón */
 }
