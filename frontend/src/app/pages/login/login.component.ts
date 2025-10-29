@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     const responseType = 'code';
     const scope = 'openid profile email';
 
-    const url = `https://us-east-1dvurikhle.auth.us-east-1.amazoncognito.com/login?client_id=${clientId}&response_type=${responseType}&scope=${encodeURIComponent(scope)}&redirect_uri=${encodeURIComponent(redirectUri)}`;
+    const url = `https://main.d17jgtfjujlttk.amplifyapp.com/login?client_id=${clientId}&response_type=${responseType}&scope=${encodeURIComponent(scope)}&redirect_uri=${encodeURIComponent(redirectUri)}`;
 
     window.location.href = url;
   }
