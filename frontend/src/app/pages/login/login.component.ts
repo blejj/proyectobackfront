@@ -20,8 +20,11 @@ export class LoginComponent implements OnInit {
     const responseType = 'code';
     const scope = 'openid profile email';
 
-    const url = `https://main.d17jgtfjujlttk.amplifyapp.com/login?client_id=${clientId}&response_type=${responseType}&scope=${encodeURIComponent(scope)}&redirect_uri=${encodeURIComponent(redirectUri)}`;
+    const cognitoDomain = 'https://us-east-1dvurikhle.auth.us-east-1.amazoncognito.com';
 
+    const url = `${cognitoDomain}/login?client_id=${clientId}&response_type=${responseType}&scope=${encodeURIComponent(scope)}&redirect_uri=${encodeURIComponent(redirectUri)}`;
+
+    // Redirige automáticamente al Hosted UI
     window.location.href = url;
   }
 }
