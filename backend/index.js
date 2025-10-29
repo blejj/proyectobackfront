@@ -17,7 +17,7 @@ const app = express();
 const PORT = 3000;
 
 // Habilitamos CORS para permitir peticiones desde el frontend (http://localhost:4200)
-app.use(cors({ origin: 'http://localhost:4200', credentials: true }));
+app.use(cors({ origin: 'https://main.d17jgtfjujlttk.amplifyapp.com', credentials: true }));
 app.use(express.json());
 app.use(session({
   secret: 'some secret',
@@ -43,7 +43,7 @@ app.get('/', (req, res) => res.send('¡Backend funcionando con CommonJS! 🚀'))
     const client = new issuer.Client({
       client_id: '1951tqfvb7fakucpruls1e1875',
       client_secret: '220il2krtt5hgp1q0b1903vj492gtqnhigp04733cj4bmui15b7',
-      redirect_uris: ['http://localhost:4200/home'],
+      redirect_uris: ['https://main.d17jgtfjujlttk.amplifyapp.com/home'],
       response_types: ['code']
     });
 
@@ -72,7 +72,7 @@ app.get('/', (req, res) => res.send('¡Backend funcionando con CommonJS! 🚀'))
 
         const params = client.callbackParams(req);
         const tokenSet = await client.callback(
-          'http://localhost:3000/callback',
+          'https://main.d17jgtfjujlttk.amplifyapp.com/home',
           params,
           { code_verifier: req.session.codeVerifier }
         );

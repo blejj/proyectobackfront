@@ -15,7 +15,13 @@ import { CommonModule } from '@angular/common';
 export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
-    // 🚀 En cuanto entra al componente, redirige a Cognito
-    window.location.href = 'http://localhost:3000/login';
+    const clientId = '1951tqfvb7fakucpruls1e1875';
+    const redirectUri = 'https://main.d17jgtfjujlttk.amplifyapp.com/home';
+    const responseType = 'code';
+    const scope = 'openid profile email';
+
+    const url = `https://us-east-1dvurikhle.auth.us-east-1.amazoncognito.com/login?client_id=${clientId}&response_type=${responseType}&scope=${encodeURIComponent(scope)}&redirect_uri=${encodeURIComponent(redirectUri)}`;
+
+    window.location.href = url;
   }
 }
