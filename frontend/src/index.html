@@ -12,23 +12,4 @@
 <body class="mat-typography">
   <app-root></app-root>
 </body>
-<script>
-  window.addEventListener("scroll", () => {
-    const scrollY = window.scrollY;
-    const docHeight = document.body.scrollHeight - window.innerHeight;
-    const scrollPercent = scrollY / docHeight;
-
-    // Colores suaves pastel
-    const startColor = [230, 215, 225]; // #fcefff (rosado muy claro)
-    const endColor = [250, 239, 255];   // #f9ebff (violeta muy claro)
-
-    // Interpolación de colores
-    const r = Math.round(startColor[0] + (endColor[0] - startColor[0]) * scrollPercent);
-    const g = Math.round(startColor[1] + (endColor[1] - startColor[1]) * scrollPercent);
-    const b = Math.round(startColor[2] + (endColor[2] - startColor[2]) * scrollPercent);
-
-    // Aplicar degradado sutil
-    document.body.style.background = `linear-gradient(180deg, rgb(${r}, ${g}, ${b}), rgb(${r - 5}, ${g - 5}, ${b - 5}))`;
-  });
-</script>
 </html>

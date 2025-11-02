@@ -1,182 +1,150 @@
-/* Variables CSS para consistencia (Basadas en blanco y negro) */
-:root {
-  --text-dark: #222222; /* Texto principal oscuro */
-  --text-light: #555555; /* Texto secundario más claro */
-  --price-color: #222222;
-  --bg-color: #ffffff; /* Fondo blanco puro */
-  --card-border: 1px solid #000000; /* Borde NEGRO sólido */
-  --btn-bg: #1a1a1a; /* Negro para el botón */
-}
-
-/* -----------------------------------
- * 1. Contenedor Principal y Título (Ajustado para el fondo y la estética)
- * ----------------------------------- */
+/* Contenedor principal del carrusel */
 .book-carousel {
-  margin: 4rem auto;
-  padding: 4rem 2rem;
-  max-width: 1400px;
-  background-color: var(--bg-color);
-  font-family: 'Inter', sans-serif; /* Usamos Sans-serif para la limpieza */
-  text-align: center;
+    max-width: 1300px; /* Limita el ancho en pantallas grandes */
+    margin: 40px auto; /* Centra el carrusel y añade espacio vertical */
+    padding: 0 20px;
 }
 
+/* Título "Más vendidos" */
 .book-carousel h2 {
-    font-family: 'Georgia', serif; /* Usamos fuente serif para el título principal */
-    font-size: 2.5rem;
-    font-weight: 400; /* Más ligero para elegancia */
+    font-size: 24px;
+    font-weight: 600;
     color: var(--text-dark);
-    margin-bottom: 3rem;
-    letter-spacing: -0.5px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--primary-blue); /* Línea azul debajo del título (como en el original) */
+    display: inline-block; /* Ajusta la línea azul al texto */
+    padding-bottom: 5px;
 }
 
-/* -----------------------------------
- * 2. Contenedor de la Grilla (4 columnas uniformes)
- * ----------------------------------- */
+/* Configuración del carrusel */
 .carousel-container {
-  position: relative;
-  max-width: 1200px;
-  margin: 0 auto;
+    position: relative; /* Necesario para posicionar las flechas */
+    overflow: hidden; /* Oculta los libros que están fuera de vista */
+    padding: 10px 0; /* Espacio para sombras y flechas */
 }
 
-/* Ocultamos el slide para usar flexbox/grilla */
+/* El slide que contendrá todas las tarjetas */
 .carousel-slide {
-    display: grid;
-    /* 4 columnas uniformes */
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0; /* Quitamos el gap para que los bordes se junten y parezca una tabla */
-    padding: 0;
-    overflow: visible;
-    /* Borde principal superior e inferior para cerrar la grilla */
-    border-top: var(--card-border);
-    border-bottom: var(--card-border);
+    display: flex;
+    justify-content: center;
+    transition: transform 0.3s ease-in-out; /* Animación de desplazamiento */
 }
 
-/* Ocultar navegación de carrusel */
-.prev, .next {
-    display: none !important;
-}
-
-
-/* -----------------------------------
- * 3. Tarjeta Individual del Libro/Producto (Book Card)
- * ----------------------------------- */
 .book-card {
-  min-width: unset; /* Permitir que la grilla controle el ancho */
-  max-width: unset;
-  height: auto;
-  background: var(--bg-color); /* Fondo blanco */
-  border-radius: 0; /* Sin bordes redondeados */
-  padding: 0;
-  box-shadow: none; /* Sin sombras */
-  /* Borde derecho para separar las columnas */
-  border-right: var(--card-border);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  cursor: pointer;
-  overflow: hidden; /* Importante para contener el botón */
-  transition: all 0.2s ease-in-out;
+    position: relative; /* Clave para la etiqueta flotante */
+    margin-right: 20px;
+    padding: 30px;
+    background-color: transparent;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s;
 }
 
-/* Quitamos el borde derecho del último elemento de la fila para evitar doble borde */
-.carousel-slide .book-card:nth-child(4n) {
-    border-right: none;
+.book-card:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Efecto de elevación al pasar el mouse */
 }
-
 
 .book-card img {
-  /* La imagen es la protagonista */
-  width: 95%; /* Pequeño margen interno */
-  height: auto;
-  max-height: 350px;
-  object-fit: contain; /* Mostrar la imagen completa, no cover */
-  border-radius: 0;
-  margin-top: 1rem;
-  margin-bottom: 1.5rem;
-  box-shadow: none;
-}
-
-/* Información del producto (título y autor) */
-.book-card h3 {
-    font-size: 1rem;
-    font-weight: 500;
-    color: var(--text-dark);
-    margin-bottom: 0.2rem;
-    line-height: 1.2;
-    text-transform: uppercase; /* MAYÚSCULAS para el título */
-    letter-spacing: 1px;
-}
-
-.book-card p {
-    font-size: 0.9rem;
-    color: var(--text-light);
-    margin-bottom: 0.5rem;
+    width: 200px;
+    justify-content: center;
+    max-height: 250px;
+    margin-bottom: 10px;
     display: block;
 }
 
-.price {
-    font-weight: 500;
-    color: var(--price-color);
-    font-size: 1rem;
-    letter-spacing: 0.5px;
-    margin-bottom: 1rem;
-    display: none; /* Precio no visible en el mockup, lo ocultamos */
+/* Título del libro */
+.book-card h2 {
+    height: 38px; /* Altura fija para evitar saltos de diseño */
+    overflow: hidden;
+    color: rgb(213, 213, 213);
+    margin-bottom: 5px;
 }
 
+/* Autor */
+.book-card p {
+    font-size: 14px;
+    color: rgb(213, 213, 213);
+    margin-bottom: 10px;
+}
 
-/* -----------------------------------
- * 4. Botón Fijo "ADD TO BAG"
- * ----------------------------------- */
+/* Precio destacado */
+.price {
+    display: block;
+    font-size: 18px;
+    font-weight: 700;
+    color: rgb(213, 213, 213); /* O un color más oscuro si lo prefieres */
+    margin-bottom: 10px;
+}
+
+/* Botón "Comprar" */
 .buy-btn {
-  /* Estilos para el botón negro fijo en la parte inferior */
-  width: 100%;
-  padding: 15px 0;
-  margin-top: auto; /* Empuja el botón hacia abajo si el contenido varía */
-  background-color: var(--btn-bg);
-  color: white;
-  border: none;
-  border-radius: 0;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 0.85rem;
+    padding: 7px 30px; /* Un poco más grandes */
+    text-decoration: none;
+    border-radius: 10px; /* Ligeramente más cuadrados */
+    font-weight: 400;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-transform: uppercase;
+    border: 2px solid transparent;
+    background-color: transparent;
+    border-color: white;
+    color: white;
 }
 
 .buy-btn:hover {
-  background-color: #333333; /* Gris oscuro al hover */
+    background-color: rgba(255, 255, 255, 0.2); /* Fondo ligeramente blanco al hacer hover */
+    transform: translateY(-2px);
 }
 
-
-/* -----------------------------------
- * 5. Responsive
- * ----------------------------------- */
-@media (max-width: 1024px) {
-    .carousel-slide {
-        grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablet */
-        border-left: var(--card-border); /* Añadimos el borde izquierdo en la grilla principal */
-    }
-
-    .book-card {
-        border-right: var(--card-border);
-    }
-
-    .book-card:nth-child(2n) {
-        border-right: none;
-    }
+/* Flechas de navegación */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 20;
+    font-size: 20px;
+    border-radius: 50%;
+    transition: background-color 0.2s;
 }
 
-@media (max-width: 640px) {
-    .carousel-slide {
-        grid-template-columns: 1fr; /* 1 columna en móvil */
-        gap: 0;
-        border-left: var(--card-border);
-    }
+.prev {
+    left: 0;
+}
 
-    .book-card {
-        border-right: none !important;
-    }
+.next {
+    right: 0;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.prev:disabled, .next:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.full-page-section {
+    /* 1. Altura de Página Completa */
+    /* Asegura que ocupe el 100% de la altura visible de la ventana */
+    min-height: 100vh;
+    
+    /* 2. Fondo (Ajusta este color a tu diseño) */
+    background-color: #0c0c0c; /* Un gris oscuro para destacar el contenido */
+    
+    /* 3. Centrado Vertical y Horizontal */
+    /* Usa Flexbox para centrar el carrusel en el medio de la pantalla */
+    display: flex;
+    align-items: center; /* Centrado vertical */
+    justify-content: center; /* Centrado horizontal (si el carrusel es más pequeño) */
+    
+    /* 4. Evitar scroll innecesario */
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }

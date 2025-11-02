@@ -12,8 +12,7 @@ html,
 body {
   scroll-behavior: smooth;
   min-height: 200vh; /* permite ver el efecto al hacer scroll */
-  transition: background 0.3s linear;
-  background: linear-gradient(180deg, #fcefff, #fcf7ff);
+  background: linear-gradient(10deg, #151515, #000000);
 }
 
 h1 {
