@@ -51,6 +51,16 @@
     bottom: 0;
     width: 60px; /* Línea más corta */
     height: 1px; /* Línea más delgada */
+}
+
+.book-carousel .h2-titulo::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 60px; /* Línea más corta */
+    height: 1px; /* Línea más delgada */
     background: #003366;
 }
 
@@ -123,7 +133,7 @@
     display: block;
     font-size: 22px; /* Precio más grande */
     font-weight: 700;
-    color: #ff7c7c; /* Precio en color de acento (Dorado) */
+    color: #e3a0a0; /* Precio en color de acento (Dorado) */
     margin-bottom: 20px;
     letter-spacing: 0.5px;
 }
