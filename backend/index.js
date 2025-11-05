@@ -17,7 +17,13 @@ const app = express();
 const PORT = 3000;
 
 // Habilitamos CORS para permitir peticiones desde el frontend (http://localhost:4200)
-app.use(cors({ origin: 'https://main.d17jgtfjujlttk.amplifyapp.com', credentials: true }));
+app.use(cors({
+  origin: [
+    'http://localhost:4200',
+    'https://main.d17jgtfjujlttk.amplifyapp.com'
+  ],
+  credentials: true
+}));
 app.use(express.json());
 app.use(session({
   secret: 'some secret',

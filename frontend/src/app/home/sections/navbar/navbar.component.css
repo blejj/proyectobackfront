@@ -263,7 +263,7 @@ body {
 /* Estilos para el contador de carrito (se mantienen, pero aseguro el color) */
 .cart-counter {
     background-color: var(--accent-secondary); /* Rojo */
-    color: rgb(0, 32, 192); ;
+    color:rgb(0, 32, 192); ;
 }
 
 /* === RESPONSIVE === */
