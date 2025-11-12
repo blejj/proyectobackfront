@@ -40,7 +40,7 @@
     /* 1. Placeholder de Fondo de Biblioteca/Tecnología */
     /* ** Reemplaza esta URL con una imagen de tu elección. ** */
     /* Si no tienes una, por ahora usa un color de fondo plano. */
-    background: url('../../../../../../../proyectobackfront/frontend/src/app/assets/img/photo-1631015348651-0e9f3aba25a9.jpg') no-repeat center center/cover;
+    background: url('assets/img/photo-1631015348651-0e9f3aba25a9.jpg') no-repeat center center/cover;
 
     /* Si quieres un color de fondo plano mientras consigues la imagen, usa esto: */
     /* background-color: #333333; */
