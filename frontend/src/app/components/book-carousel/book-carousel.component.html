@@ -7,7 +7,7 @@
           <img [src]="book.cover" [alt]="book.title" (error)="book.cover = 'logo.png'">
           <h2>{{ book.title }}</h2>
           <p>{{ book.author }}</p>
-          <span class="price">{{ book.price | currency }}</span>
+          <span class="price">${{ book.price * 900 }}</span>
           <button class="buy-btn" (click)="addToCart(book)">Comprar</button>
         </div>
       </div>

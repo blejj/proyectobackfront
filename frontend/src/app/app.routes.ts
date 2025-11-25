@@ -6,6 +6,7 @@ import { CatalogoComponent } from './home/sections/catalogo/catalogo.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { MiPerfilComponent } from './pages/miperfil/miperfil.component';
 import { ChatAiComponent } from './components/chat-ai/chat-ai.component';
+import { BankPromotionsComponent } from './components/bank-promotions/bank-promotions.component';
 
 
 export const routes: Routes = [

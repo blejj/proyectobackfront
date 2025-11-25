@@ -109,7 +109,6 @@ body {
   position: absolute;
   top: 60px;
   right: 40px;
-  width: 340px; /* Un poco más ancho */
 
   background: rgba(32, 32, 32, 0.783);
   backdrop-filter: blur(10px); /* Aplicar el mismo efecto de blur que el navbar */

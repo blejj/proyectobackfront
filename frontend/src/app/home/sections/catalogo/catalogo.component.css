@@ -13,6 +13,7 @@ body {
 /* ------------------------------------------------------------------- */
 .container.mt-5 {
     padding-bottom: 50px;
+    padding-top: 100px;
 }
 
 .text-primary {
@@ -21,7 +22,7 @@ body {
 }
 
 .text-success {
-    color: #2e7d32 !important; /* Verde profundo para precios */
+    color: #da7b7b !important; /* Rojo claro para precios */
     font-weight: 700;
     font-size: 1.25rem; /* Destacar el precio */
 }
