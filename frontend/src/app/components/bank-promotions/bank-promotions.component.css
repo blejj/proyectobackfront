@@ -1,100 +1,100 @@
+s/* ----------------------------------- */
+/* Estilos del Contenedor Exterior (el color de la página) */
 /* ----------------------------------- */
-/* Estilos generales del contenedor principal */
+body {
+    /* Si esta sección es la única que tiene este fondo, puedes aplicarlo al contenedor exterior */
+    /* Añade algo de padding arriba y abajo para que se vea el color de fondo */
+    padding: 50px 0;
+}
+
+
+/* ----------------------------------- */
+/* Estilos del Contenedor Principal (la caja negra redondeada) */
 /* ----------------------------------- */
 .main-container {
     /* Color de fondo oscuro y bordes redondeados grandes */
-    background-color: #1a1a1a; /* Un color muy oscuro similar al de la imagen */
-    border-radius: 40px; /* Bordes redondeados */
-    padding: 60px 80px; /* Espaciado interno generoso */
-    width: 100%; /* Ancho que ocupa la pantalla */
-    max-width: 80%; /* Límite de ancho para que no se estire demasiado */
-    margin: 0px auto; /* Centrar en la página */
-    box-sizing: border-box; /* Asegura que el padding no afecte el ancho/alto total */
-    font-family: Arial, sans-serif; /* Fuente de ejemplo */
+    border-radius: 40px;
+    padding: 20px;
+    margin-top: 80px;
+    margin-left: 150px;
+    margin-right: 150px;
+    font-family: Arial, sans-serif;
+    /* Sombra opcional para un efecto de elevación sutil */
+    box-shadow: 0 15px 50px rgba(135, 134, 134, 0.2);
 }
 
 .content-wrapper {
-    display: flex; /* Usar Flexbox para dividir en dos columnas */
-    justify-content: space-between; /* Espaciar las columnas */
-    gap: 50px; /* Espacio entre las columnas */
-}
-
-.left-content, .right-content {
-    /* Definir el ancho de las columnas, puedes ajustarlo */
-    flex: 1; /* Permite que ambos tomen espacio equitativamente */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 70px;
 }
 
 /* ----------------------------------- */
 /* Estilos del contenido izquierdo (Título y Etiquetas) */
 /* ----------------------------------- */
 .main-title {
-    font-size: 68px; /* Tamaño de fuente grande */
+    font-size: 68px;
     font-weight: 700;
     line-height: 1.1;
-    color: white; /* Color principal del texto */
+    color: white;
     margin-bottom: 40px;
 }
 
-/* Para el efecto de color diferente en una palabra (simulando "for you") */
-.main-title > span {
-    color: #b088cc; /* Un color morado claro */
-}
-
-/* Puedes envolver "for you" en un span en el HTML si quieres el color diferente: */
-/* <h1 class="main-title">Flow is made <br> <span>for you</span></h1> */
-
-
 .tags-section {
     display: flex;
-    flex-direction: column; /* Apila las filas de etiquetas verticalmente */
-    gap: 10px; /* Espacio entre cada fila de etiquetas */
-    max-width: 500px; /* Límite de ancho para que no se extiendan demasiado */
+    flex-direction: column;
+    gap: 10px;
+    /* Eliminamos el max-width para que se ajusten mejor */
 }
 
 .tag-row {
     display: flex;
-    flex-wrap: wrap; /* Permite que las etiquetas salten de línea si es necesario */
-    gap: 8px; /* Espacio entre etiquetas en la misma fila */
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
 .tag, .main-tag {
-    /* Estilos base de las etiquetas */
+    /* Estilos base */
     color: white;
-    background-color: #333333; /* Fondo gris oscuro para las etiquetas */
+    background-color: var(--tag-background);
     border-radius: 20px;
     padding: 5px 12px;
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
     transition: background-color 0.2s;
+    /* Para dar el efecto de botones reales, un sutil borde */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tag:hover {
+    background-color: #444444; /* Un gris un poco más claro al hacer hover */
 }
 
 .main-tag {
-    /* Estilo para la etiqueta destacada ("Accesibility") */
-    background-color: #b088cc; /* Color morado para el fondo */
+    /* Estilo para la etiqueta destacada (Acción) */
+    background-color: var(--accent-purple);
     color: white;
     font-weight: bold;
+    border-color: var(--accent-purple);
+}
+
+.main-tag:hover {
+    background-color: #9a6ec2;
 }
 
 
 /* ----------------------------------- */
 /* Estilos del contenido derecho (Ilustración y texto secundario) */
 /* ----------------------------------- */
-.right-content {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Alinea los elementos a la izquierda */
-}
-
 .illustration-placeholder {
-    /* Espacio para la ilustración */
+    /* El rectángulo gris oscuro a la derecha */
     width: 100%;
-    height: 300px; /* Altura de ejemplo */
-    background-color: #333333; /* Color de relleno para simular la ilustración */
+    height: 300px;
+    background-image: url("/assets/img/generos-de-novelas.jpg");;
     border-radius: 20px;
     margin-bottom: 40px;
-    /* Estilos adicionales si deseas simular la forma de la persona */
-    position: relative;
 }
 
 .secondary-title {
@@ -105,23 +105,107 @@
 
 .description {
     font-size: 18px;
-    color: #cccccc; /* Color gris claro para el texto secundario */
+    color: #cccccc;
     line-height: 1.5;
     margin-bottom: 30px;
+    /* Ajuste para que las negritas (ej. **Acción**) se vean mejor */
+    font-weight: 300;
+}
+
+.secondary-text-section strong {
+    color: var(--accent-purple); /* Resalta los nombres de los géneros */
+    font-weight: bold;
 }
 
 .download-button {
-    background-color: #b088cc; /* Color morado del botón */
+    padding: 14px 30px; /* Un poco más grandes */
+    text-decoration: none;
+    border-radius: 8px; /* Ligeramente más cuadrados */
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 2px solid transparent;
+    background-color: transparent;
+    border-color: white;
     color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 12px 25px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.2s;
 }
 
 .download-button:hover {
-    background-color: #9a6ec2; /* Un tono un poco más oscuro al pasar el ratón */
+    background-color: rgba(255, 255, 255, 0.2); /* Fondo ligeramente blanco al hacer hover */
+    transform: translateY(-2px);
+}
+
+/* --- Responsive (Asegurando que se vea bien en móvil) --- */
+@media (max-width: 992px) {
+    .content-wrapper {
+        flex-direction: column; /* Apila las columnas */
+    }
+
+    .main-container {
+        padding: 40px 30px;
+        width: 95%;
+    }
+
+    .main-title {
+        font-size: 48px;
+    }
+
+    .illustration-placeholder {
+        height: 200px;
+    }
+}
+
+/* --- Estilos Adicionales para los Tags --- */
+
+.tags-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    /* Agregamos el máximo de ancho para que se agrupen bien, como en la imagen */
+    max-width: 500px;
+    padding-left: 5px; /* Pequeño ajuste para mejor alineación visual */
+}
+
+.tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* Estilos base para todas las etiquetas */
+.tag, .main-tag {
+    color: white;
+    border-radius: 20px;
+    padding: 6px 14px; /* Un poco más de padding para que se vean más como botones */
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-transform: capitalize; /* Para que las palabras se vean bien */
+}
+
+.tag:hover {
+    background-color: #444444;
+}
+
+.full-page-section {
+    /* 1. Altura de Página Completa */
+    /* Asegura que ocupe el 100% de la altura visible de la ventana */
+    min-height: 100vh;
+
+    /* 2. Fondo (Ajusta este color a tu diseño) */
+    background-color: #0c0c0c; /* Un gris oscuro para destacar el contenido */
+
+    /* 3. Centrado Vertical y Horizontal */
+    /* Usa Flexbox para centrar el carrusel en el medio de la pantalla */
+    display: flex;
+    align-items: center; /* Centrado vertical */
+    justify-content: center; /* Centrado horizontal (si el carrusel es más pequeño) */
+
+    /* 4. Evitar scroll innecesario */
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }

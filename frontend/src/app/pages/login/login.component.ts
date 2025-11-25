@@ -15,7 +15,20 @@ import { CommonModule } from '@angular/common';
 export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
-    // 🚀 En cuanto entra al componente, redirige a Cognito
-    window.location.href = 'http://localhost:3000/login';
+    const clientId = '1951tqfvb7fakucpruls1e1875';
+    const responseType = 'code';
+    const scope = 'openid profile email';
+    const cognitoDomain = 'https://us-east-1dvurikhle.auth.us-east-1.amazoncognito.com';
+
+    // Detecta si estás en localhost o en producción
+    const isLocal = window.location.hostname === 'localhost';
+
+    const redirectUri = isLocal
+      ? 'http://localhost:4200/home' // para pruebas locales
+      : 'https://main.d17jgtfjujlttk.amplifyapp.com/home'; // deploy Amplify
+
+    const url = `${cognitoDomain}/login?client_id=${clientId}&response_type=${responseType}&scope=${encodeURIComponent(scope)}&redirect_uri=${encodeURIComponent(redirectUri)}`;
+
+    window.location.href = url;
   }
 }
