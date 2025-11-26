@@ -1,44 +1,74 @@
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+// backend/service/auth.service.js
 const authRepository = require('../repository/auth.repository');
 
-const registerUser = async (data) => {
-  const { email, password, nombre, apellido, telefono, direccion, dni } = data;
+// Crear perfil local
+const registerUserProfile = async (email, sub, data) => {
+  const { nombre, apellido, telefono, direccion, dni } = data;
 
-  if (!email || !password || !nombre || !apellido || !telefono || !direccion || !dni) {
-    return { status: 400, body: { message: 'Todos los campos son requeridos' } };
+  // SOLO exigimos email (del token Cognito)
+  if (!email) {
+    return { status: 400, body: { message: 'Email requerido' } };
   }
 
+  // Si ya existe perfil → OK
   const existe = await authRepository.getUserByEmail(email);
   if (existe) {
-    return { status: 409, body: { message: 'El usuario ya existe' } };
+    return { status: 200, body: { message: 'El perfil ya existe', user: existe } };
   }
 
-  const hashedPassword = await bcrypt.hash(password, 10);
-  await authRepository.insertUser({ email, password: hashedPassword, nombre, apellido, telefono, direccion, dni });
+  // Crear perfil nuevo con datos parciales o vacíos
+  await authRepository.insertUserProfile({
+    email,
+    cognitoSub: sub,
+    nombre: nombre || null,
+    apellido: apellido || null,
+    telefono: telefono || null,
+    direccion: direccion || null,
+    dni: dni || null
+  });
 
-  return { status: 201, body: { message: 'Usuario registrado con éxito' } };
+  const newUser = await authRepository.getUserByEmail(email);
+
+  return {
+    status: 201,
+    body: { message: 'Perfil registrado con éxito', user: newUser }
+  };
 };
 
-const loginUser = async ({ email, password }) => {
+// Obtener perfil
+const getProfileByEmail = async (email) => {
   const user = await authRepository.getUserByEmail(email);
 
   if (!user) {
-    return { status: 401, body: { message: 'Credenciales incorrectas' } };
+    return {
+      status: 404,
+      body: { message: 'Perfil no encontrado. Complete su registro.' }
+    };
   }
 
-  const validPassword = await bcrypt.compare(password, user.password);
-  if (!validPassword) {
-    return { status: 401, body: { message: 'Credenciales incorrectas' } };
-  }
-
-  const token = jwt.sign(
-    { email: user.email, nombre: user.nombre, id: user.id },
-    'secreto123',
-    { expiresIn: '1h' }
-  );
-
-  return { status: 200, body: { message: 'Login exitoso', token, idUsuario: user.idUsuario } };
+  return {
+    status: 200,
+    body: { message: 'Perfil obtenido con éxito', user }
+  };
 };
 
-module.exports = { registerUser, loginUser };
+// Actualizar perfil
+const updateProfile = async (email, data) => {
+  const updated = await authRepository.updateUserProfileByEmail(email, data);
+
+  if (updated) {
+    return { status: 200, body: { message: 'Perfil actualizado con éxito' } };
+  } else {
+    const userExists = await authRepository.getUserByEmail(email);
+    if (!userExists) {
+      return { status: 404, body: { message: 'Usuario no encontrado.' } };
+    }
+    return { status: 200, body: { message: 'Perfil sin cambios' } };
+  }
+};
+
+module.exports = {
+  registerUserProfile,
+  getProfileByEmail,
+  updateProfile
+};

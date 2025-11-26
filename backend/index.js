@@ -1,118 +1,130 @@
 // Importaciones
 const express = require('express');
+require('dotenv').config();
 const session = require('express-session');
 const cors = require('cors');
-require('./config/db.js');
+require('./config/db.js'); // solo inicializa la conexión a SQL
 
-// Importa las rutas personalizadas para autenticación, libros, usuarios, pagos e IA
-const authRoutes = require('./routes/auth.routes.js');
-const bookRoutes = require('./routes/book.routes.js');
-const userRoutes = require('./routes/user.routes.js');
-const checkoutRoutes = require('./routes/checkout.routes.js');
-const aiGeminiRoutes = require('./routes/aiGemini.routes');
-const uploadFile = require('./routes/uploadFile.routes.js');
-
-// Crea una instancia de la aplicación Express
 const app = express();
-// Puerto donde se levanta el servidor
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
-// Habilitamos CORS para permitir peticiones desde el frontend (http://localhost:4200)
+// CORS para Angular
 app.use(cors({
-  origin: [
-    'http://localhost:4200',
-    'https://main.d17jgtfjujlttk.amplifyapp.com'
-  ],
+  origin: ['http://localhost:4200'],
   credentials: true
 }));
+
 app.use(express.json());
+
+// Sesiones (para guardar codeVerifier de PKCE)
 app.use(session({
-  secret: 'some secret',
+  secret: process.env.SESSION_SECRET || 'some secret',
   resave: false,
-  saveUninitialized: true,
-  cookie: { secure: false, sameSite: 'lax' }
+  saveUninitialized: false,       // importante para que no cree sesiones vacías
+  cookie: {
+    secure: false,                // en dev sin HTTPS
+    sameSite: 'lax'
+  }
 }));
 
-// Ruta de prueba
-app.get('/', (req, res) => res.send('¡Backend funcionando con CommonJS! 🚀'));
+app.get('/', (req, res) => res.send('Backend OK + Cognito'));
 
-// ---------- Cargamos openid-client dinámicamente ----------
+// ---------- COGNITO ----------
 (async () => {
   try {
-    const openid = await import('openid-client');
-    const { Issuer, generators } = openid.default || openid;
+    const { Issuer, generators } = require('openid-client');
 
-    // Cognito OpenID Client
     const issuer = await Issuer.discover(
-      'https://cognito-idp.us-east-1.amazonaws.com/us-east-1_dvurIkHLe'
+      `https://cognito-idp.us-east-1.amazonaws.com/${process.env.COGNITO_USER_POOL_ID}`
     );
 
     const client = new issuer.Client({
-      client_id: '1951tqfvb7fakucpruls1e1875',
-      client_secret: '220il2krtt5hgp1q0b1903vj492gtqnhigp04733cj4bmui15b7',
-      redirect_uris: ['https://main.d17jgtfjujlttk.amplifyapp.com/home'],
+      client_id: process.env.COGNITO_CLIENT_ID,
+      client_secret: process.env.COGNITO_CLIENT_SECRET,
+      redirect_uris: ['http://localhost:4200/login'],
       response_types: ['code']
     });
 
-    console.log('✅ Cognito client inicializado');
+    console.log('✅ Cognito client inicializado con', client.metadata.client_id);
 
-    // ---------- Rutas Cognito ----------
+    // LOGIN: inicia flujo PKCE
     app.get('/login', (req, res) => {
       const codeVerifier = generators.codeVerifier();
       const codeChallenge = generators.codeChallenge(codeVerifier);
-      req.session.codeVerifier = codeVerifier;
+
+      req.session.codeVerifier = codeVerifier; // se guarda en sesión
 
       const url = client.authorizationUrl({
-        scope: 'openid email profile',
+        scope: 'openid email',
         code_challenge: codeChallenge,
-        code_challenge_method: 'S256',
+        code_challenge_method: 'S256'
       });
 
+      console.log('Auth URL =>', url);
       res.redirect(url);
     });
 
+    // CALLBACK: intercambia code por tokens
     app.get('/callback', async (req, res) => {
       try {
         if (!req.session || !req.session.codeVerifier) {
-          return res.status(400).send('CodeVerifier no encontrado en sesión');
+          return res.status(400).send('No hay codeVerifier en sesión');
         }
 
         const params = client.callbackParams(req);
+
         const tokenSet = await client.callback(
-          'https://main.d17jgtfjujlttk.amplifyapp.com/home',
+          'http://localhost:4200/login',        // MISMA redirect_uri
           params,
           { code_verifier: req.session.codeVerifier }
         );
 
         req.session.tokenSet = tokenSet;
-        res.json({ message: 'Login exitoso con Cognito ✅', token: tokenSet });
+        return res.json({ message: 'Login OK', token: tokenSet });
       } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: 'Error en callback de Cognito' });
+        console.error('Error en /callback:');
+        console.error('message:', err.message);
+        if (err.response && err.response.data) {
+          console.error('response.data:', err.response.data);
+        }
+        return res.status(500).json({ error: 'Error en callback' });
       }
     });
 
-    // LOGOUT 
+    // LOGOUT
     app.get('/logout', (req, res) => {
       req.session.destroy(() => {
-        const logoutUrl = `https://us-east-1dvurikhle.auth.us-east-1.amazoncognito.com/logout?client_id=1951tqfvb7fakucpruls1e1875&logout_uri=http://localhost:4200/login`;
+        const cognitoDomain = 'us-east-1vvt9jn1br.auth.us-east-1.amazoncognito.com';
+        const logoutRedirectUri = 'http://localhost:4200/login';
+
+        const logoutUrl =
+          `https://${cognitoDomain}/logout?` +
+          `client_id=${process.env.COGNITO_CLIENT_ID}&` +
+          `logout_uri=${encodeURIComponent(logoutRedirectUri)}`;
+
         res.redirect(logoutUrl);
       });
     });
-    // Rutas internas
+
+    // ---------- Rutas API ----------
+    const authRoutes = require('./routes/auth.routes.js');
+    const favoritesRoutes = require('./routes/favorites.routes.js');
+    const bookRoutes = require('./routes/book.routes.js');
+    const checkoutRoutes = require('./routes/checkout.routes.js');
+    const aiGeminiRoutes = require('./routes/aiGemini.routes.js');
+
     app.use('/api/auth', authRoutes);
+    app.use('/api/favorites', favoritesRoutes);
     app.use('/api/books', bookRoutes);
-    app.use('/api/user', userRoutes);
     app.use('/api/checkout', checkoutRoutes);
     app.use('/api/ai', aiGeminiRoutes);
-    app.use('/api/upload', uploadFile);
 
-    // Iniciar servidor después de Cognito
     app.listen(PORT, () =>
-      console.log(`Servidor escuchando en http://localhost:${PORT}`)
+      console.log(`Servidor en http://localhost:${PORT}`)
     );
 
-  } catch (err) {
-    console.error('❌ Error cargando openid-client:', err);
+  } catch (e) {
+    console.error('❌ Error Cognito:', e);
+    process.exit(1);
   }
 })();

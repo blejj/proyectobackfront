@@ -1,26 +1,41 @@
+// backend/config/db.js
 require('dotenv').config();
 const sql = require('mssql');
 
-const config = {
+const dbConfig = {
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   server: process.env.DB_SERVER,
-  port: parseInt(process.env.DB_PORT, 10),
+  port: parseInt(process.env.DB_PORT || '1433', 10),
   database: process.env.DB_NAME,
   options: {
-    encrypt: false,
+    encrypt: false, // tu config actual
     trustServerCertificate: true
   }
 };
 
-const poolPromise = new sql.ConnectionPool(config)
-  .connect()
-  .then(pool => {
-    console.log('Conectado a SQL Server');
-    return pool;
-  })
-  .catch(err => {
-    console.error('Error al conectar con SQL Server', err);
-  });
+let pool;
 
-module.exports = { sql, poolPromise };
+/**
+ * Devuelve un pool reutilizable de SQL Server.
+ */
+async function getConnection() {
+  try {
+    if (pool) {
+      return pool;
+    }
+
+    pool = await sql.connect(dbConfig);
+    console.log("✅ Pool SQL Server inicializado");
+    return pool;
+
+  } catch (error) {
+    console.error("❌ Error creando pool de SQL Server:", error);
+    throw error;
+  }
+}
+
+module.exports = {
+  sql,
+  getConnection
+};
