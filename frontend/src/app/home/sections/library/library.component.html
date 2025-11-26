@@ -1,0 +1,78 @@
+<app-navbar></app-navbar>
+
+<div class="library-container">
+  <h1>📚 Biblioteca Digital</h1>
+  
+  <!-- Sección de carga de archivos -->
+  <div class="upload-section">
+    <h2>Subir nuevo libro (PDF)</h2>
+    
+    <div class="upload-area">
+      <input 
+        type="file" 
+        id="fileInput"
+        accept=".pdf"
+        (change)="onFileSelected($event)"
+        [disabled]="isUploading"
+      />
+      
+      <div class="file-info" *ngIf="selectedFile">
+        <p><strong>Archivo seleccionado:</strong> {{ selectedFile.name }}</p>
+        <p><strong>Tamaño:</strong> {{ formatFileSize(selectedFile.size) }}</p>
+      </div>
+      
+      <button 
+        class="upload-btn"
+        (click)="uploadFile()"
+        [disabled]="!selectedFile || isUploading"
+      >
+        {{ isUploading ? '⏳ Subiendo...' : '📤 Subir PDF' }}
+      </button>
+      
+      <div 
+        class="message"
+        [class.success]="uploadMessage.includes('✅')"
+        [class.error]="uploadMessage.includes('❌') || uploadMessage.includes('⚠️')"
+        *ngIf="uploadMessage"
+      >
+        {{ uploadMessage }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Sección de lista de archivos -->
+  <div class="files-section">
+    <h2>Libros en la biblioteca</h2>
+    
+    <div class="loading" *ngIf="isLoadingFiles">
+      Cargando archivos...
+    </div>
+    
+    <div class="files-list" *ngIf="!isLoadingFiles">
+      <div class="file-item" *ngFor="let file of files">
+        <div class="file-icon">📄</div>
+        <div class="file-details">
+          <h3>{{ file.name }}</h3>
+          <p class="file-meta">
+            <span>{{ file.size }}</span> • 
+            <span>{{ file.lastModified }}</span>
+          </p>
+        </div>
+        <div class="file-actions">
+          <button class="action-btn view-btn" (click)="viewFile(file)" title="Ver PDF">
+            👁️ Ver
+          </button>
+          <button class="action-btn download-btn" (click)="downloadFile(file)" title="Descargar PDF">
+            ⬇️ Descargar
+          </button>
+        </div>
+      </div>
+      
+      <div class="no-files" *ngIf="files.length === 0">
+        No hay archivos en la biblioteca todavía
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

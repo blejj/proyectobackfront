@@ -1,4 +1,4 @@
-const { uploadToS3 } = require("../service/uploadFile.service");
+const { uploadToS3, listFromS3 } = require("../service/uploadFile.service");
 const fs = require("fs");
 
 exports.uploadFile = async (req, res) => {
@@ -23,3 +23,13 @@ exports.uploadFile = async (req, res) => {
     });
   }
 };
+
+exports.listFiles = async (req, res) => {
+  try {
+    const result = await listFromS3();
+    res.json(result.Contents);
+  } catch (error) {
+    res.status(500).json({ error: "Error listando archivos" });
+  }
+};
+

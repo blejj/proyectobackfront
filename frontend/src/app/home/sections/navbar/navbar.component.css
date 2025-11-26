@@ -9,7 +9,7 @@ body {
 
 /* === NAVBAR BASE === */
 .navbar {
-  position: fixed;
+  /* position: fixed; */
   top: 25px; /* separación desde arriba */
   left: 50%;
   transform: translateX(-50%);
