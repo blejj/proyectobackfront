@@ -1,5 +1,7 @@
 {
   "dependencies": {
-    "@google/generative-ai": "^0.24.1"
+    "@google/generative-ai": "^0.24.1",
+    "mercadopago": "^2.11.0",
+    "stripe": "^20.0.0"
   }
 }
