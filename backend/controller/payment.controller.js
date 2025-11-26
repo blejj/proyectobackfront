@@ -21,11 +21,12 @@ const createPaymentPreference = async (req, res) => {
       })),
       external_reference: String(idUsuario),
       back_urls: {
-        success: 'http://localhost:4200/home',
-        failure: 'http://localhost:4200/home',
-        pending: 'http://localhost:4200/home'
+        success: 'https://main.d17jgtfjujlttk.amplifyapp.com',
+        failure: 'https://main.d17jgtfjujlttk.amplifyapp.com',
+        pending: 'https://main.d17jgtfjujlttk.amplifyapp.com'
       },
-      auto_return: 'approved'
+      auto_return: 'approved',
+      locale: 'es_AR' // 
     };
 
     const result = await preference.create({ body });
