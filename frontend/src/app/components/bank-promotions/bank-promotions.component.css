@@ -20,7 +20,7 @@ body {
     margin-right: 150px;
     font-family: Arial, sans-serif;
     /* Sombra opcional para un efecto de elevación sutil */
-    box-shadow: 0 15px 50px rgba(135, 134, 134, 0.2);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.318);
 }
 
 .content-wrapper {
@@ -196,7 +196,7 @@ body {
     min-height: 100vh;
 
     /* 2. Fondo (Ajusta este color a tu diseño) */
-    background-color: #0c0c0c; /* Un gris oscuro para destacar el contenido */
+    background-color: #ddd4ce; /* Un gris oscuro para destacar el contenido */
 
     /* 3. Centrado Vertical y Horizontal */
     /* Usa Flexbox para centrar el carrusel en el medio de la pantalla */

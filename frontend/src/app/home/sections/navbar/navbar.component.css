@@ -18,20 +18,21 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(255, 255, 255, 0.85); /* fondo translúcido */
+  background: rgba(224, 212, 198, 0.95);
+  /* background: rgba(197, 163, 122, 0.95);*/
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-radius: 50px; /* borde redondeado tipo píldora */
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* sombra suave */
   transition: all 0.3s ease;
   z-index: 1000;
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(167, 105, 54, 0.192);
   color: rgb(49, 49, 49); /* texto general del navbar en negro */
 }
 
 /* Opcional: efecto al hacer hover o scroll */
 .navbar:hover {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(151, 131, 106, 0.95);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
