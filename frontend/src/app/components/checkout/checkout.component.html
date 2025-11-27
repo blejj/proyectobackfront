@@ -1,34 +1,63 @@
 <app-navbar></app-navbar>
 
 <div class="checkout-container">
-  <h2>Finalizar Compra</h2>
-  
-  <form (ngSubmit)="submitPayment()" class="payment-form">
-    <div class="form-group">
-      <label for="nroTarjeta">Número de Tarjeta:</label>
-      <input type="text" id="nroTarjeta" [(ngModel)]="paymentData.nroTarjeta" 
-             name="nroTarjeta" required placeholder="1234 5678 9012 3456">
-    </div>
+  <!-- Resumen simple del carrito -->
+  <h2>Resumen de tu compra</h2>
+  <ul>
+    <li *ngFor="let item of (cartItems$ | async)">
+      {{ item.title }} ({{ item.quantity }}x) -
+      {{ item.price * item.quantity | currency:'USD' }}
+    </li>
+  </ul>
 
-    <div class="form-group">
-      <label for="fechaVencimiento">Fecha de Vencimiento:</label>
-      <input type="text" id="fechaVencimiento" [(ngModel)]="paymentData.fechaVencimiento" 
-             name="fechaVencimiento" required placeholder="MM/AA">
-    </div>
+  <p>
+    <strong>Total a Pagar:</strong>
+    {{ totalPriceSignal() | currency:'USD' }}
+  </p>
 
-    <div class="form-group">
-      <label for="clave">CVV:</label>
-      <input type="text" id="clave" [(ngModel)]="paymentData.clave" 
-             name="clave" required placeholder="123">
-    </div>
+  <hr />
 
-    <div class="total-section">
-      <h3>Total a pagar: {{ paymentData.importe | currency }}</h3>
-    </div>
+  <!-- Dirección -->
+  <h2>1. Dirección de Envío</h2>
 
-    <button type="submit" class="submit-btn">Confirmar Pago</button>
+  <form [formGroup]="addressForm" (ngSubmit)="onSubmit()">
+    <label>
+      Calle
+      <input type="text" formControlName="calle" />
+    </label>
+    <br />
+    <label>
+      Número
+      <input type="text" formControlName="numero" />
+    </label>
+    <br />
+    <label>
+      Localidad
+      <input type="text" formControlName="localidad" />
+    </label>
+    <br />
+    <label>
+      Provincia
+      <input type="text" formControlName="provincia" />
+    </label>
+    <br />
+    <label>
+      Código Postal
+      <input type="text" formControlName="codigoPostal" />
+    </label>
 
-    <button type="button" (click)="deleteCard()" class="delete-btn">Borrar Tarjeta</button>
+    <hr />
+
+    <!-- Método de pago -->
+    <h2>2. Método de Pago</h2>
+
+    <p>
+      Por seguridad, se usa Mercado Pago. No guardamos datos de tarjeta.
+    </p>
+
+    <button type="submit" [disabled]="addressForm.invalid">
+      Pagar con Mercado Pago
+    </button>
   </form>
 </div>
 
