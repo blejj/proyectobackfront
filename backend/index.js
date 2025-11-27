@@ -21,11 +21,9 @@ const PORT = 3000;
 
 // Habilitamos CORS para permitir peticiones desde el frontend (http://localhost:4200)
 app.use(cors({
-  origin: [
-    'http://localhost:4200',
-    'https://main.d17jgtfjujlttk.amplifyapp.com'
-  ],
-  credentials: true
+  origin: '*',
+  methods: 'GET,POST,PUT,DELETE,OPTIONS',
+  allowedHeaders: 'Content-Type,Authorization'
 }));
 app.use(express.json());
 app.use(session({
@@ -111,10 +109,9 @@ app.get('/', (req, res) => res.send('¡Backend funcionando con CommonJS! 🚀'))
     app.use('/api/upload', uploadFile);
 
     // Iniciar servidor después de Cognito
-    app.listen(PORT, () =>
-      console.log(`Servidor escuchando en http://localhost:${PORT}`)
-    );
-
+    app.listen(PORT, '0.0.0.0', () => {
+      console.log(`Servidor escuchando en http://0.0.0.0:${PORT}`);
+    });
   } catch (err) {
     console.error('❌ Error cargando openid-client:', err);
   }

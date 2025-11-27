@@ -7,7 +7,7 @@ export class BookService {
     //TODO
     //importar controller
 
-  private apiUrl = 'http://98.84.18.35:3000/api/books';
+  private apiUrl = 'https://dbb1g3b8aa.execute-api.us-east-1.amazonaws.com/api/books';
 
   constructor(private http: HttpClient) {}
 

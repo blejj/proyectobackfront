@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UploadPdfService {
-  private apiUrl = 'http://98.84.18.35:3000/api/upload';
+  private apiUrl = 'https://dbb1g3b8aa.execute-api.us-east-1.amazonaws.com/api/upload';
 
   constructor(private http: HttpClient) {}
 

@@ -4,8 +4,8 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private URL = 'http://98.84.18.35:3000/api/auth';
-  private URLUser = 'http://98.84.18.35:3000/api/user';
+  private URL = 'https://dbb1g3b8aa.execute-api.us-east-1.amazonaws.com/api/auth';
+  private URLUser = 'https://dbb1g3b8aa.execute-api.us-east-1.amazonaws.com/api/user';
 
   constructor(private http: HttpClient) {}
 

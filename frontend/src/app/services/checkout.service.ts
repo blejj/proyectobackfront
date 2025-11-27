@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
 })
 export class CheckoutService {
 
-  private apiUrl = 'http://98.84.18.35:3000/api/checkout';
-  private paymentUrl = 'http://98.84.18.35:3000/api/payment';
+  private apiUrl = 'https://dbb1g3b8aa.execute-api.us-east-1.amazonaws.com/api/checkout';
+  private paymentUrl = 'https://dbb1g3b8aa.execute-api.us-east-1.amazonaws.com/api/payment';
 
   constructor(private http: HttpClient) { }
 
