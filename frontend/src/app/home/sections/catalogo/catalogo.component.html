@@ -1,5 +1,4 @@
 <app-navbar></app-navbar>
-
 <div class="container mt-5">
   <div class="row">
     <!-- Filtros -->
@@ -9,8 +8,7 @@
           <h5 class="card-title text-primary mb-3">Buscar libros</h5>
           <div class="mb-3">
             <input class="form-control" [(ngModel)]="searchQuery" placeholder="Ej: Harry Potter, Dune..." />
-            <button class="btn btn-primary mt-2 w-100" (click)="buscarLibros()">
-              <i class="fas fa-search me-1"></i> Buscar
+            <button class="btn btn-primary mt-2 w-100" (click)="buscarLibros()">Buscar
             </button>
           </div>
 
@@ -44,8 +42,7 @@
               <p class="card-text mb-1">Autor: <strong>{{ book.author }}</strong></p>
               <p class="card-text text-muted">Año: {{ book.year }}</p>
               <p class="card-text mt-auto"><strong class="text-success">${{ book.price | number }}</strong></p>
-              <button class="btn btn-outline-primary btn-sm mt-2 w-100" (click)="addToCart(book)">
-                <i class="fas fa-shopping-cart me-1"></i> Comprar
+              <button class="btn btn-outline-primary btn-sm mt-2 w-100" (click)="addToCart(book)">Comprar
               </button>
             </div>
           </div>
@@ -58,5 +55,4 @@
     </div>
   </div>
 </div>
-
 <app-footer></app-footer>
