@@ -17,7 +17,7 @@ export class BookCarouselComponent {
   books: any[] = [];
 
   currentIndex = 0;
-  visibleItems = 5; // Cantidad de libros visibles a la vez
+  visibleItems = 4; // Cantidad de libros visibles a la vez
 
   constructor(
     private cartService: CartService,
