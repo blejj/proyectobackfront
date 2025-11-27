@@ -7,6 +7,8 @@ Proyecto académico desarrollado para las materias Frontend y Backend. Objetivo:
 * Typescript
 * Angular
 * Angular Material
+* AWS Cognito
+* AWS S3
 * SQL
 * Bootstrap 
 
