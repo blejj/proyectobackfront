@@ -10,6 +10,7 @@ const bookRoutes = require('./routes/book.routes.js');
 const userRoutes = require('./routes/user.routes.js');
 const checkoutRoutes = require('./routes/checkout.routes.js');
 const aiGeminiRoutes = require('./routes/aiGemini.routes');
+const uploadFile = require('./routes/uploadFile.routes.js');
 
 // Crea una instancia de la aplicación Express
 const app = express();
@@ -104,6 +105,7 @@ app.get('/', (req, res) => res.send('¡Backend funcionando con CommonJS! 🚀'))
     app.use('/api/user', userRoutes);
     app.use('/api/checkout', checkoutRoutes);
     app.use('/api/ai', aiGeminiRoutes);
+    app.use('/api/upload', uploadFile);
 
     // Iniciar servidor después de Cognito
     app.listen(PORT, () =>
