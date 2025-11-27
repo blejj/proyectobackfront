@@ -4,16 +4,22 @@ body {
   color: #333;
   margin: 0;
   padding: 0;
+  display: flex;
+  justify-content: center; /* Centrado horizontal */
+  align-items: center; /* Centrado vertical */
+  height: 100vh; /* Ocupa toda la altura de la pantalla */
+  background-color: #f0f0f0; /* Fondo ligeramente gris */
 }
 
 .checkout-container {
   background-color: #ffffff;
-  width: 80%;
-  margin: 0 auto;
+  width: 50%;
+  margin: 6rem auto; /* Centrado horizontal con un margen superior de 6rem */
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
+
 
 h2 {
   font-size: 1.5rem;
@@ -76,23 +82,31 @@ input[type="text"]:focus {
   outline: none;
 }
 
-/* Botones */
+/* Botón */
 button {
-  background-color: rgba(224, 212, 198, 0.95); /* Color crema suave */
-  color: rgba(50, 40, 30, 0.95); /* Color marrón oscuro */
-  font-size: 1rem;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  width: 100%;
+  font-family: 'Georgia', 'Times New Roman', serif !important;
+  color: #202020 !important;
+  background-color: rgba(224, 212, 198, 0.95) !important;
+  border: 1px solid rgba(167, 105, 54, 0.718) !important;
+  transition: background-color 0.3s ease, letter-spacing 0.3s ease !important;
+  padding: 0.7rem 1.4rem !important;
+  border-radius: 30px !important;
+  font-family: inherit;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.8rem;
+  display: block; /* Hace que el botón sea un bloque */
+  margin: 20px auto; /* Centra el botón y agrega un margen superior */
 }
 
 button:hover {
-  background-color: rgba(210, 200, 180, 0.95); /* Un tono más oscuro al pasar el cursor */
+  background-color: #A88B7D !important;
+  letter-spacing: 2px;
+  color: #202020 !important;
 }
 
 button:disabled {
   background-color: rgba(200, 190, 170, 0.95); /* Botón deshabilitado */
   cursor: not-allowed;
 }
+
