@@ -54,10 +54,12 @@ export class CatalogoComponent implements OnInit {
 
   addToCart(book:any){
     this.cartService.addToCart({
-      id:book.id,
-      title:book.title,
-      price: book.price,
-      cover: book.cover
-    });
+  id: book.id,
+  title: book.title,
+  price: book.price,
+  quantity: 1,
+  cover: book.cover
+});
+
   }
 }

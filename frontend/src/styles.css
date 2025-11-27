@@ -11,6 +11,11 @@ html,
 body {
   scroll-behavior: smooth;
   background: url('/assets/img/033ab5d6-416d-4c74-a8a8-25115fe9f0a1.png') center center/cover no-repeat;
+  
+}
+.catalogo-body {
+  background: none !important;
+  background-color: white !important;
 }
 
 .catalogo-body {

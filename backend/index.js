@@ -1,3 +1,4 @@
+require('dotenv').config();
 // Importaciones
 const express = require('express');
 const session = require('express-session');
@@ -11,6 +12,7 @@ const userRoutes = require('./routes/user.routes.js');
 const checkoutRoutes = require('./routes/checkout.routes.js');
 const aiGeminiRoutes = require('./routes/aiGemini.routes');
 const uploadFile = require('./routes/uploadFile.routes.js');
+const paymentRoutes = require ('./routes/payment.routes.js');
 
 // Crea una instancia de la aplicación Express
 const app = express();
@@ -32,6 +34,7 @@ app.use(session({
   saveUninitialized: true,
   cookie: { secure: false, sameSite: 'lax' }
 }));
+app.use('/api/payment', paymentRoutes)
 
 // Ruta de prueba
 app.get('/', (req, res) => res.send('¡Backend funcionando con CommonJS! 🚀'));

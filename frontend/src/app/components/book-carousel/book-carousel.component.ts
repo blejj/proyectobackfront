@@ -62,6 +62,7 @@ export class BookCarouselComponent {
       id:book.id,
       title:book.title,
       price: book.price,
+      quantity: 1,          
       cover: book.cover
     });
   }
