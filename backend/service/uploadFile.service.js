@@ -1,4 +1,5 @@
 const { S3Client, PutObjectCommand } = require("@aws-sdk/client-s3");
+const { ListObjectsV2Command } = require("@aws-sdk/client-s3");
 const fs = require("fs");
 
 const s3 = new S3Client({
@@ -36,4 +37,11 @@ exports.uploadToS3 = async (file) => {
   } catch (err) {
     throw new Error("Error subiendo archivo a S3: " + err.message);
   }
+};
+
+exports.listFromS3 = async () => {
+  return await s3.send(new ListObjectsV2Command({
+    Bucket: process.env.AWS_S3_BUCKET,
+    Prefix: "uploads/"
+  }));
 };

@@ -5,11 +5,13 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Payment } from '../../models/payment.model';
+import { NavbarComponent } from '../../home/sections/navbar/navbar.component';
+import { FooterComponent } from '../../home/sections/footer/footer.component';
 
 @Component({
   selector: 'app-checkout',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, NavbarComponent, FooterComponent],
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css']
 })

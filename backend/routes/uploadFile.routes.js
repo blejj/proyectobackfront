@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const { uploadFile } = require("../controller/uploadFile.controller");
+const { listFiles } = require("../controller/uploadFile.controller");
 
 const upload = multer({ 
   dest: "uploads/",
@@ -19,5 +20,7 @@ const upload = multer({
 });
 
 router.post("/", upload.single("pdf"), uploadFile);
+router.get("/", listFiles);
+
 
 module.exports = router;
