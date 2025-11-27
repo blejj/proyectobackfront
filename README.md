@@ -16,7 +16,7 @@ Proyecto académico desarrollado para las materias Frontend y Backend. Objetivo:
 https://openlibrary.org/developers/api
 
 ## URL Prod:
--
+- https://main.d17jgtfjujlttk.amplifyapp.com/home
 
 ## Integrantes:
 * Bleile, Franco
