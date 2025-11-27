@@ -9,7 +9,7 @@ body {
 
 /* === NAVBAR BASE === */
 .navbar {
-  position: fixed;
+  /* position: fixed; */
   top: 25px; /* separación desde arriba */
   left: 50%;
   transform: translateX(-50%);
@@ -18,20 +18,21 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(255, 255, 255, 0.85); /* fondo translúcido */
+  background: rgba(224, 212, 198, 0.95);
+  /* background: rgba(197, 163, 122, 0.95);*/
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-radius: 50px; /* borde redondeado tipo píldora */
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* sombra suave */
   transition: all 0.3s ease;
   z-index: 1000;
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(167, 105, 54, 0.192);
   color: rgb(49, 49, 49); /* texto general del navbar en negro */
 }
 
 /* Opcional: efecto al hacer hover o scroll */
 .navbar:hover {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(151, 131, 106, 0.95);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
@@ -198,7 +199,7 @@ body {
 .item-price {
   margin-left: auto;
   font-weight: 700;
-  color: rgb(233, 137, 137); /* Precio en verde esmeralda */
+  color: #d4a373; /* Precio en verde esmeralda */
   font-size: 1rem;
 }
 
@@ -233,36 +234,38 @@ body {
 .cart-total span {
     font-size: 1.4rem; /* Precio final más grande */
     font-weight: 700;
-    color: rgb(233, 137, 137); ;
+    color: #d4a373 ;
 }
 
 .checkout-btn {
   margin-top: 15px;
   width: 100%;
-  background-color: var(--accent-primary); /* Fondo sólido de acento */
-  border: 1px solid ;
-  color: #ffffff; /* Texto negro para alto contraste */
-  padding: 10px 0;
-  border-radius: 8px; /* Bordes menos agresivos */
-  cursor: pointer;
-  font-weight: bold;
+  font-family: 'Georgia', 'Times New Roman', serif !important;
+  color: #202020 !important;
+  background-color: rgba(224, 212, 198, 0.95) !important;
+  border: 1px solid rgba(167, 105, 54, 0.718) !important;
+  transition: background-color 0.3s ease, letter-spacing 0.3s ease !important;
+  padding: 0.7rem 1.4rem !important;
+  border-radius: 30px !important;
+  font-family: inherit;
   text-transform: uppercase;
   letter-spacing: 1px;
-  transition: all 0.2s ease;
+  font-size: 0.8rem;
 }
 
 .checkout-btn:hover {
-  background-color: #ffffff; /* Tono más claro en hover */
-  color: black;
-  font-weight: 400;
+  font-family: 'Georgia', 'Times New Roman', serif !important;
+  background-color: #A88B7D !important;
+  letter-spacing: 2px;
+  color: #202020 !important;
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px #072c79;
+  box-shadow: 0 5px 15px #2b2b2b;
 }
 
 /* Estilos para el contador de carrito (se mantienen, pero aseguro el color) */
 .cart-counter {
     background-color: var(--accent-secondary); /* Rojo */
-    color:rgb(0, 32, 192); ;
+    color: #594430;
 }
 
 /* === RESPONSIVE === */

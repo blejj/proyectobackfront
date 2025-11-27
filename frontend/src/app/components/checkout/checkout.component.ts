@@ -17,6 +17,10 @@ import { CheckoutService } from '../../services/checkout.service';
 import { NotificationService } from '../../services/notification.service';
 import { UsuarioService } from '../../services/usuario.service';
 
+//import { Payment } from '../../models/payment.model';
+import { NavbarComponent } from '../../home/sections/navbar/navbar.component';
+import { FooterComponent } from '../../home/sections/footer/footer.component';
+
 interface Payment {
   nroTarjeta: string;
   fechaVencimiento: string;
@@ -25,10 +29,11 @@ interface Payment {
   importe: number;
 }
 
+
 @Component({
   selector: 'app-checkout',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, NavbarComponent, FooterComponent],
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush

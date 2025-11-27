@@ -1,18 +1,36 @@
 <div class="full-page-section">
-  <section class="book-carousel">
-    <h2 class="h2-titulo">{{ title }}</h2>
-    <div class="carousel-container">
-      <div class="carousel-slide">
-        <div class="book-card" *ngFor="let book of visibleBooks">
-          <img [src]="book.cover" [alt]="book.title" (error)="book.cover = 'logo.png'">
-          <h2>{{ book.title }}</h2>
-          <p>{{ book.author }}</p>
-          <span class="price">${{ book.price * 900 }}</span>
-          <button class="buy-btn" (click)="addToCart(book)">Comprar</button>
+  <section class="book-showcase">
+
+    <h2 class="section-title">{{ title }}</h2>
+
+    <div class="books-wrapper">
+
+      <button class="nav-btn left" (click)="prevSlide()" [disabled]="currentIndex === 0">❮</button>
+
+      <div class="books-grid">
+        <div class="book-item" *ngFor="let book of visibleBooks">
+          <div class="img-wrapper">
+            <img [src]="book.cover" [alt]="book.title" (error)="book.cover = 'logo.png'">
+          </div>
+
+          <div class="info">
+            <h3 class="book-title">{{ book.title }}</h3>
+            <p class="author">{{ book.author }}</p>
+            <span class="price">${{ book.price * 900 }}</span>
+
+            <button class="buy-btn" (click)="addToCart(book)">
+              Comprar
+            </button>
+          </div>
         </div>
       </div>
-      <button class="prev" (click)="prevSlide()" [disabled]="currentIndex === 0">❮</button>
-      <button class="next" (click)="nextSlide()" [disabled]="currentIndex >= books.length - visibleItems">❯</button>
+
+      <button class="nav-btn right"
+              (click)="nextSlide()"
+              [disabled]="currentIndex >= books.length - visibleItems">❯
+      </button>
+
     </div>
+
   </section>
 </div>
