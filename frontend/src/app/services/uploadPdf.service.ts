@@ -6,14 +6,14 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UploadPdfService {
-  private apiUrl = 'http://localhost:3000/api/upload';
+  private apiUrl = 'http://98.84.18.35:3000/api/upload';
 
   constructor(private http: HttpClient) {}
 
   uploadPdf(file: File): Observable<any> {
     const formData = new FormData();
     formData.append('pdf', file);
-    
+
     return this.http.post(`${this.apiUrl}`, formData);
   }
 

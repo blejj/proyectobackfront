@@ -35,6 +35,6 @@ export class NavbarComponent {
   }
 
   logout() {
-    window.location.href = 'http://localhost:3000/logout';
+    window.location.href = 'http://98.84.18.35:3000/logout';
   }
 }

@@ -18,7 +18,7 @@ export interface ChatResponse {
   providedIn: 'root'
 })
 export class AiService {
-  private apiUrl = 'http://localhost:3000/api/ai';
+  private apiUrl = 'http://98.84.18.35:3000/api/ai';
 
   constructor(private http: HttpClient) { }
 

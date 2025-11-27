@@ -7,7 +7,7 @@ export class BookService {
     //TODO
     //importar controller
 
-  private apiUrl = 'http://localhost:3000/api/books';
+  private apiUrl = 'http://98.84.18.35:3000/api/books';
 
   constructor(private http: HttpClient) {}
 

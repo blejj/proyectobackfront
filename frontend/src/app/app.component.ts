@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -11,6 +11,17 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     MatSnackBarModule
   ],
-  template: '<router-outlet></router-outlet>',
+  template: `
+    <div [class.catalogo-body]="isCatalogoRoute()">
+      <router-outlet></router-outlet>
+    </div>
+  `,
 })
-export class AppComponent {}
+export class AppComponent {
+
+  constructor(private router: Router) {}
+
+  isCatalogoRoute(): boolean {
+    return this.router.url.includes('catalogo');
+  }
+}

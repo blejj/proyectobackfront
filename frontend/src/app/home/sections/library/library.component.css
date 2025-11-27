@@ -9,6 +9,7 @@ h1 {
   color: #2c3e50;
   text-align: center;
   margin-bottom: 2rem;
+  margin-top: 5rem;
   font-size: 2.5rem;
 }
 
@@ -219,11 +220,11 @@ input[type="file"]:disabled {
   .library-container {
     padding: 1rem;
   }
-  
+
   h1 {
     font-size: 2rem;
   }
-  
+
   .upload-section,
   .files-section {
     padding: 1rem;

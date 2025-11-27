@@ -13,6 +13,11 @@ body {
   background: url('/assets/img/033ab5d6-416d-4c74-a8a8-25115fe9f0a1.png') center center/cover no-repeat;
 }
 
+.catalogo-body {
+  background: none !important;
+  background-color: white !important;
+}
+
 h1 {
   margin: 0;
   padding: 0;
