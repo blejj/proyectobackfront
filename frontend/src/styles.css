@@ -10,8 +10,7 @@
 html,
 body {
   scroll-behavior: smooth;
-  min-height: 200vh; /* permite ver el efecto al hacer scroll */
-  background: linear-gradient(10deg, #0e0e0e, #000000);
+  background: url('/assets/img/033ab5d6-416d-4c74-a8a8-25115fe9f0a1.png') center center/cover no-repeat;
 }
 
 h1 {

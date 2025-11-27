@@ -12,7 +12,7 @@
 }
 
 .chat-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: rgba(197, 175, 149, 0.95);
   color: white;
   padding: 1.5rem;
   display: flex;
@@ -32,13 +32,13 @@
 
 .chat-header h2 {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
 }
 
 .chat-header p {
   margin: 0;
   opacity: 0.9;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
 }
 
 .clear-btn {
@@ -85,7 +85,7 @@
 }
 
 .assistant-message .message-avatar {
-  background: #764ba2;
+  background: #a19072;
   color: white;
 }
 
@@ -290,7 +290,7 @@
     min-height: 100vh;
     border-radius: 0;
   }
-  
+
   .messages-container {
     min-height: 200px;
   }

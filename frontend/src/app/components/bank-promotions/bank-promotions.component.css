@@ -1,211 +1,224 @@
-s/* ----------------------------------- */
-/* Estilos del Contenedor Exterior (el color de la página) */
 /* ----------------------------------- */
-body {
-    /* Si esta sección es la única que tiene este fondo, puedes aplicarlo al contenedor exterior */
-    /* Añade algo de padding arriba y abajo para que se vea el color de fondo */
-    padding: 50px 0;
+/* Variables de Color */
+/* ----------------------------------- */
+:root {
+    --color-background: #ddd4ce; /* Fondo de página */
+    --color-container: #ffffff; /* Fondo del contenedor principal: BLANCO */
+    --color-primary-text: #333333; /* Texto principal: Gris Oscuro */
+    --color-secondary-text: #666666; /* Texto de descripción: Gris Medio */
+    --color-accent: #b35048; /* Color de Acento (Terracota/Óxido) */
+    --color-tag-bg: #f5f5f5; /* Fondo de etiqueta suave */
 }
 
 
 /* ----------------------------------- */
-/* Estilos del Contenedor Principal (la caja negra redondeada) */
+/* Estilos del Contenedor Exterior */
+/* ----------------------------------- */
+
+.full-page-section {
+    min-height: 100vh;
+    background: url('/assets/img/033ab5d6-416d-4c74-a8a8-25115fe9f0a1.png') center center/cover no-repeat;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 50px 0;
+}
+
+.full-page-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+
+    /* Overlay igual al hero-background */
+    background: linear-gradient(
+        to bottom,
+        rgba(191, 162, 123, 0.438) 0%,
+        rgba(183, 159, 130, 0.261) 50%,
+        rgba(154, 135, 99, 0.276) 100%
+    );
+}
+
+.full-page-section > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* ----------------------------------- */
+/* Estilos del Contenedor Principal (Caja Grande) */
 /* ----------------------------------- */
 .main-container {
-    /* Color de fondo oscuro y bordes redondeados grandes */
+    background-color: var(white); /* BLANCO */
     border-radius: 40px;
-    padding: 20px;
-    margin-top: 80px;
-    margin-left: 150px;
-    margin-right: 150px;
-    font-family: Arial, sans-serif;
-    /* Sombra opcional para un efecto de elevación sutil */
-    box-shadow: 0 15px 50px rgba(135, 134, 134, 0.2);
+    padding: 30px; /* Más padding interno para respirar */
+    /* Centrado en pantallas grandes */
+    max-width: 1200px;
+    width: 90%;
+    margin: auto;
+    font-family: 'Inter', sans-serif; /* Fuente moderna */
+    /* Sombra más premium, sutil y amplia */
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
 .content-wrapper {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    gap: 70px;
+    align-items: flex-start; /* Alineación arriba para un mejor flujo */
+    gap: 50px;
 }
 
 /* ----------------------------------- */
 /* Estilos del contenido izquierdo (Título y Etiquetas) */
 /* ----------------------------------- */
+.left-content {
+    flex: 1; /* Ocupa espacio flexible */
+    max-width: 45%;
+}
+
 .main-title {
-    font-size: 68px;
-    font-weight: 700;
-    line-height: 1.1;
-    color: white;
-    margin-bottom: 40px;
+    font-size: 72px; /* Un poco más grande y audaz */
+    font-weight: 800;
+    line-height: 1.05;
+    color: rgb(50, 50, 50); /* Texto oscuro */
+    margin-bottom: 50px;
+    margin-top: 70px;
 }
 
 .tags-section {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    /* Eliminamos el max-width para que se ajusten mejor */
+    max-width: 500px;
+    padding-left: 0;
 }
 
 .tag-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 12px; /* Un poco más de espacio entre etiquetas */
 }
 
+/* Estilos base para todas las etiquetas */
 .tag, .main-tag {
-    /* Estilos base */
-    color: white;
-    background-color: var(--tag-background);
-    border-radius: 20px;
-    padding: 5px 12px;
-    font-size: 14px;
+    color: rgb(81, 63, 33);
+    background-color: rgba(199, 181, 160, 0.95);
+    border-radius: 8px; /* Ligeramente menos redondeado para un look moderno */
+    padding: 8px 16px; /* Más grandes para verse como botones */
+    font-size: 15px;
     font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.2s;
-    /* Para dar el efecto de botones reales, un sutil borde */
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.2s;
+    border: none; /* Quitamos el borde blanco */
+    text-transform: capitalize;
 }
 
 .tag:hover {
-    background-color: #444444; /* Un gris un poco más claro al hacer hover */
+    background-color: rgba(151, 131, 106, 0.95);
+    color: var(--color-primary-text);
 }
-
-.main-tag {
-    /* Estilo para la etiqueta destacada (Acción) */
-    background-color: var(--accent-purple);
-    color: white;
-    font-weight: bold;
-    border-color: var(--accent-purple);
-}
-
-.main-tag:hover {
-    background-color: #9a6ec2;
-}
-
 
 /* ----------------------------------- */
 /* Estilos del contenido derecho (Ilustración y texto secundario) */
 /* ----------------------------------- */
+.right-content {
+    flex: 1;
+    max-width: 55%;
+}
+
 .illustration-placeholder {
-    /* El rectángulo gris oscuro a la derecha */
     width: 100%;
-    height: 300px;
-    background-image: url("/assets/img/generos-de-novelas.jpg");;
+    height: 350px; /* Un poco más alto */
+    background-image: url("/assets/img/generos-de-novelas.jpg");
+    background-size: cover; /* Asegura que la imagen cubra el área */
+    background-position: center;
     border-radius: 20px;
     margin-bottom: 40px;
+    /* Un ligero sombreado interno o un borde sutil puede ayudar */
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
 }
 
 .secondary-title {
-    font-size: 32px;
-    color: white;
+    font-size: 36px;
+    color: rgb(50, 50, 50);
+    font-weight: 700;
     margin-bottom: 15px;
 }
 
 .description {
     font-size: 18px;
-    color: #cccccc;
-    line-height: 1.5;
-    margin-bottom: 30px;
-    /* Ajuste para que las negritas (ej. **Acción**) se vean mejor */
-    font-weight: 300;
+    color: rgb(89, 73, 47);
+    line-height: 1.6;
+    margin-bottom: 40px; /* Más espacio antes del botón */
+    font-weight: 400;
 }
 
 .secondary-text-section strong {
-    color: var(--accent-purple); /* Resalta los nombres de los géneros */
-    font-weight: bold;
+    color: var(--color-accent); /* Resalta con el color de acento */
+    font-weight: 700;
 }
 
 .download-button {
-    padding: 14px 30px; /* Un poco más grandes */
-    text-decoration: none;
-    border-radius: 8px; /* Ligeramente más cuadrados */
-    font-weight: 600;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    padding: 15px 35px;
+    border-radius: 10px;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    border: 2px solid transparent;
-    background-color: transparent;
-    border-color: white;
-    color: white;
+    letter-spacing: 1px;
+
+    /* Estilo de botón SÓLIDO */
+    background-color: rgb(255, 255, 255); /* Azul de marca */
+    color: rgb(0, 0, 0);
+    border: 2px solid var(--color-accent);
+
+    transition: all 0.3s ease;
 }
 
 .download-button:hover {
-    background-color: rgba(255, 255, 255, 0.2); /* Fondo ligeramente blanco al hacer hover */
+    background-color: rgba(151, 131, 106, 0.95); /* Un tono más oscuro */
     transform: translateY(-2px);
+    color: white;
+    box-shadow: 0 5px 15px rgba(179, 80, 72, 0.3); /* Sombra de elevación */
 }
 
-/* --- Responsive (Asegurando que se vea bien en móvil) --- */
-@media (max-width: 992px) {
+/* ----------------------------------- */
+/* Responsive */
+/* ----------------------------------- */
+@media (max-width: 1100px) {
     .content-wrapper {
         flex-direction: column; /* Apila las columnas */
+        gap: 40px;
     }
 
     .main-container {
         padding: 40px 30px;
-        width: 95%;
+    }
+
+    .left-content, .right-content {
+        max-width: 100%;
+        width: 100%;
     }
 
     .main-title {
-        font-size: 48px;
+        font-size: 56px;
+    }
+}
+
+@media (max-width: 600px) {
+    .main-container {
+        border-radius: 20px;
+        padding: 30px 20px;
+    }
+
+    .main-title {
+        font-size: 44px;
+        margin-bottom: 30px;
     }
 
     .illustration-placeholder {
-        height: 200px;
+        height: 250px;
+        border-radius: 15px;
     }
-}
 
-/* --- Estilos Adicionales para los Tags --- */
-
-.tags-section {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    /* Agregamos el máximo de ancho para que se agrupen bien, como en la imagen */
-    max-width: 500px;
-    padding-left: 5px; /* Pequeño ajuste para mejor alineación visual */
-}
-
-.tag-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-/* Estilos base para todas las etiquetas */
-.tag, .main-tag {
-    color: white;
-    border-radius: 20px;
-    padding: 6px 14px; /* Un poco más de padding para que se vean más como botones */
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    text-transform: capitalize; /* Para que las palabras se vean bien */
-}
-
-.tag:hover {
-    background-color: #444444;
-}
-
-.full-page-section {
-    /* 1. Altura de Página Completa */
-    /* Asegura que ocupe el 100% de la altura visible de la ventana */
-    min-height: 100vh;
-
-    /* 2. Fondo (Ajusta este color a tu diseño) */
-    background-color: #0c0c0c; /* Un gris oscuro para destacar el contenido */
-
-    /* 3. Centrado Vertical y Horizontal */
-    /* Usa Flexbox para centrar el carrusel en el medio de la pantalla */
-    display: flex;
-    align-items: center; /* Centrado vertical */
-    justify-content: center; /* Centrado horizontal (si el carrusel es más pequeño) */
-
-    /* 4. Evitar scroll innecesario */
-    width: 100%;
-    margin: 0;
-    padding: 0;
+    .download-button {
+        width: 100%;
+        text-align: center;
+    }
 }
